@@ -1,10 +1,31 @@
 import React from 'react';
+import './HomeProduct.css';
+import Fade from 'react-reveal/Fade';
 
-const HomeProduct = () => {
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+const HomeProduct = ({ product }) => {
+    const { name, price, img, } = product;
+
     return (
-        <div>
-            <h2>Home product</h2>
-        </div>
+        <>
+            <Fade bottom duration={3000} distance="50px">
+                <div className="mb-5 text-center service-detail col-sm-12 col-md-6 col-lg-4 ">
+                    <Link to="/allProducts" className="text-decoration-none">
+                        <Card style={{ cursor: 'pointer' }}
+                            className="border-0 h-100 card-background"
+                        >
+                            <Card.Img variant="top" src={img} className="img-fluid p-3 service-image" style={{ height: "" }} />
+                            <Card.Body className="pt-0">
+                                <Card.Title as="h5" className="">{name}</Card.Title>
+                                <Card.Title as="h4" className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
+                            </Card.Body>
+                        </Card></Link>
+
+                </div>
+            </Fade>
+        </>
     );
 };
 

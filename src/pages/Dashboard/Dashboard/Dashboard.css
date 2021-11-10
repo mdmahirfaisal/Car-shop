@@ -1,0 +1,12 @@
+/* .layout-container{
+    height: 100%;
+    display: grid;
+    grid-template-columns:repeat(12, 1fr) ;
+}
+.side-nav{
+    height: 100vh ;
+
+}
+.main-container{
+    grid-column: 3 / -1;
+} */

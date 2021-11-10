@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 
@@ -9,8 +10,7 @@ const NavMenu = () => {
 
     return (
         <>
-
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect sticky="top" expand="lg" bg="light" variant="light" className="shadow-sm">
                 <Container>
                     <Navbar.Brand href="#home">Super car shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -24,10 +24,8 @@ const NavMenu = () => {
 
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets">More deets</Nav.Link>
-                            <Nav.Link eventKey={2} href="#memes">
-                                Dank memes
-                            </Nav.Link>
+                            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                            <Nav.Link as={Link} to="/"> Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
