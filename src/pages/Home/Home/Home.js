@@ -1,9 +1,17 @@
 import React from 'react';
+import NavMenu from '../../Shared/NavMenu/NavMenu';
+import About from '../About/About';
+import Banner from '../Banner/Banner';
+import HomeProducts from '../HomeProducts/HomeProducts';
+
 
 const Home = () => {
     return (
         <div>
-            <h2>This is home</h2>
+            <NavMenu></NavMenu>
+            <Banner></Banner>
+            <About></About>
+            <HomeProducts></HomeProducts>
         </div>
     );
 };
