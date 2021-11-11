@@ -10,7 +10,7 @@ const NavMenu = () => {
 
     return (
         <>
-            <Navbar collapseOnSelect sticky="top" expand="lg" bg="light" variant="light" className="shadow-sm">
+            <Navbar style={{ backgroundColor: "#f1f2f6" }} collapseOnSelect sticky="top" expand="lg" variant="light" className="shadow-sm">
                 <Container>
                     <Navbar.Brand href="#home">Super car shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,12 +33,6 @@ const NavMenu = () => {
         </>
     );
 }
-
-// const linkStyle = {
-//     textDecoration: 'none',
-//     color: 'white',
-
-// }
 
 export default NavMenu;
 

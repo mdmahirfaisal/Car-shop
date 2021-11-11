@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 import Fade from 'react-reveal/Fade';
 
@@ -20,9 +21,9 @@ const About = () => {
                         <Fade bottom duration={2500} distance="50px">
                             <div className="text-start">
                                 <h4 className="text-info fw-bold">WHY CHOOSE OUR SHOP?</h4>
-                                <p className="text-secondary"><i>We appreciate you taking the time today to visit our web site. Our goal is to give you an interactive tour of our new and used inventory, as well as allow you to conveniently get a quote, schedule a service appointment, or apply for financing.
+                                <Typography className="text-secondary"><i>We appreciate you taking the time today to visit our web site. Our goal is to give you an interactive tour of our new and used inventory, as well as allow you to conveniently get a quote, schedule a service appointment, or apply for financing.
 
-                                    At our dealership, we have devoted ourselves to helping and serving our customers to the best of our ability. We believe the cars we offer are the highest quality and ideal for your life needs. We understand that you rely on  inquiries in a timely fashion. We look forward to doing business with you!.</i></p>
+                                    At our dealership, we have devoted ourselves to helping and serving our customers to the best of our ability. We believe the cars we offer are the highest quality and ideal for your life needs. We understand that you rely on  inquiries in a timely fashion. We look forward to doing business with you!.</i></Typography>
                             </div>
                         </Fade>
                     </div>
