@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 
@@ -34,19 +35,50 @@ const Footer = () => {
                     </div>
 
 
-                    <div className="col-md-4 mt-5">
-                        <div>
-                            <h4 className="text-light fw-bold">Rajshahi,Bangladesh</h4>
-                            <p className="text-white">Baya Bazar, Rajshahi</p>
+                    <div className="col-md-3 mt-5">
+                        <div className="d-flex">
+                            <h1><i className="fas fa-map-marked-alt text-danger me-3"></i></h1>
+                            <div>
+                                <h4 className="text-light fw-bold">Rajshahi,Bangladesh</h4>
+                                <p className="text-white">Baya Bazar, Rajshahi</p>
+                            </div>
                         </div>
-                        <div className="">
-
+                        <div>
+                            <h2 className="text-light mt-5">Use link</h2>
+                            <div className="d-flex text-start">
+                                <div>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> About us</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Products</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Projects</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Our Team</p></Link>
+                                </div>
+                                <div>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Contact us</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Blog</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Testimonials</p></Link>
+                                    <Link to="/home" className="text-decoration-none"><p className="ms-5 text-secondary"> Faq</p></Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
 
-                    <div className="col-md-4">
+                    <div className="col-md-5 mt-5">
+                        <div className="d-flex">
+                            <h1><i className="fas fa-phone-volume text-danger me-3"></i></h1>
+                            <div>
+                                <h4 className="text-light fw-bold">+880 01928-XXXXXX</h4>
+                                <p className="text-white">Give us call</p>
+                            </div>
+                        </div>
 
+                        <div>
+                            <h2 className="text-light mt-5">Subscribe</h2>
+                            <p className="text-light">Reference site about Lorem Ipsum, giving information on its origins, as well.</p>
+                        </div>
+                        <div className="text-end mt-5" style={{ maxHeight: '80px' }}>
+                            <img src="https://i.ibb.co/D1gYjbd/logo.png" className="img-fluid" alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
