@@ -14,6 +14,11 @@
 //     const [admin, setAdmin] = useState(false);
 //     const [token, setToken] = useState('');
 
+//     const [loginModalOpen, setLoginModalOpen] = useState(false);
+
+//     const handleLoginOpen = () => setLoginModalOpen(true);
+//     const handleLoginClose = () => setLoginModalOpen(false);
+
 
 //     const auth = getAuth();
 //     const googleProvider = new GoogleAuthProvider();
@@ -25,9 +30,9 @@
 //             .then((result) => {
 //                 const destination = location?.state?.from || '/';
 //                 history.replace(destination);
-//                 const user = result.user;
+//                 // const user = result.user;
 //                 // save to database or update
-//                 saveUser(user.email, user.displayName, 'PUT')
+//                 // saveUser(user.email, user.displayName, 'PUT')
 //                 setAuthError('')
 
 //             })
@@ -46,7 +51,7 @@
 //                 const newUser = { email, displayName: name };
 //                 setUser(newUser);
 //                 // save user to database 
-//                 saveUser(email, name, 'POST')
+//                 // saveUser(email, name, 'POST')
 //                 // send name to firebase after creation 
 //                 updateProfile(auth.currentUser, {
 //                     displayName: name
@@ -115,18 +120,18 @@
 
 
 //     /// save to database 
-//     const saveUser = (email, displayName, method) => {
-//         const user = { email, displayName };
-//         console.log(user);
-//         fetch('https://polar-oasis-74265.herokuapp.com/users', {
-//             method: method,
-//             headers: {
-//                 'content-type': 'application/json'
-//             },
-//             body: JSON.stringify(user)
-//         })
-//             .then()
-//     }
+//     // const saveUser = (email, displayName, method) => {
+//     //     const user = { email, displayName };
+//     //     console.log(user);
+//     //     fetch('', {
+//     //         method: method,
+//     //         headers: {
+//     //             'content-type': 'application/json'
+//     //         },
+//     //         body: JSON.stringify(user)
+//     //     })
+//     //         .then()
+//     // }
 
 //     return {
 //         user,
@@ -139,7 +144,11 @@
 //         loginUser,
 //         logOut,
 //         setLoading,
-//         setAuthError
+//         setAuthError,
+//         handleLoginOpen,
+//         handleLoginClose,
+//         loginModalOpen,
+
 //     }
 // };
 

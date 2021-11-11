@@ -9,6 +9,7 @@ const NavMenu = () => {
     const [isSticky, setSticky] = React.useState(false);
     const [isCollapsed, setCollapsed] = React.useState(null);
 
+
     React.useEffect(() => {
         window.addEventListener("scroll", () => {
             if (window.scrollY > 50) {
@@ -18,8 +19,6 @@ const NavMenu = () => {
             }
         })
     }, []);
-
-
 
     return (
         <>
@@ -47,7 +46,7 @@ const NavMenu = () => {
                         </Nav>
                         <Nav style={{ marginBottom: '-10px' }}>
                             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                            <Nav.Link as={Link} to="/"> Login</Nav.Link>
+                            <Nav.Link as={Link} to="/login"> Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
