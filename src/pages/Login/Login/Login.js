@@ -1,8 +1,4 @@
 import * as React from 'react';
-// import Backdrop from '@mui/material/Backdrop';
-// import Box from '@mui/material/Box';
-// import Modal from '@mui/material/Modal';
-// import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
@@ -10,9 +6,7 @@ import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 
-const Login = ({ loginModalOpen, handleLoginClose }) => {
-
-
+const Login = () => {
     const [loginData, setLoginData] = React.useState({});
     // const { user, loginUser, authError, loading, signInWithGoogle } = useAuth();
     const location = useLocation();
@@ -27,6 +21,7 @@ const Login = ({ loginModalOpen, handleLoginClose }) => {
         newLoginData[field] = value;
         setLoginData(newLoginData);
     }
+    console.log(loginData);
 
     const handleLoginSubmit = (e) => {
         // loginUser(loginData.email, loginData.password, location, history)
@@ -40,18 +35,6 @@ const Login = ({ loginModalOpen, handleLoginClose }) => {
         // signInWithGoogle(location, history);
     };
 
-
-    // const style = {
-    //     position: 'absolute',
-    //     borderRadius: '20px',
-    //     top: '50%',
-    //     left: '50%',
-    //     border: 'none',
-    //     transform: 'translate(-50%, -50%)',
-    //     bgcolor: 'background.paper',
-    //     boxShadow: 20,
-    //     p: 4,
-    // };
 
     return (
         <div>
@@ -75,40 +58,6 @@ const Login = ({ loginModalOpen, handleLoginClose }) => {
                         {authError && <Alert severity="error">{authError}</Alert>
                         } */}
             </form>
-
-
-
-
-
-
-
-
-
-
-            {/* ----------------------------------------------------------------------------- */}
-
-            {/* <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                open={loginModalOpen}
-                onClose={handleLoginClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 400,
-                }}
-            >
-                <Fade in={loginModalOpen}>
-                    <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2">
-
-                        </Typography>
-                        <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                            login system from 
-                        </Typography>
-                    </Box>
-                </Fade>
-            </Modal> */}
         </div>
     );
 };
