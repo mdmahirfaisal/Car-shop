@@ -1,32 +1,32 @@
 
-// import React from 'react';
-// import { Redirect, Route } from 'react-router';
-// import useAuth from '../../../hooks/useAuth';
+import React from 'react';
+import { Redirect, Route } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
 
-// const AdminRoute = ({ children, ...rest }) => {
-//     const { user, admin, loading } = useAuth();
-//     if (loading) {
-//         return 'Spinner'
-//     }
+const AdminRoute = ({ children, ...rest }) => {
+    const { user, loading } = useAuth();
+    if (loading) {
+        return 'Spinner'
+    }
 
 
-//     return (
-//         <Route
-//             {...rest}
-//             render={({ location }) =>
-//                 user.email && admin ? (
-//                     children
-//                 ) : (
-//                     <Redirect
-//                         to={{
-//                             pathname: "/home",
-//                             state: { from: location }
-//                         }}
-//                     />
-//                 )
-//             }
-//         />
-//     );
-// };
+    return (
+        <Route
+            {...rest}
+            render={({ location }) =>
+                user.email ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/home",
+                            state: { from: location }
+                        }}
+                    />
+                )
+            }
+        />
+    );
+};
 
-// export default AdminRoute;
+export default AdminRoute;

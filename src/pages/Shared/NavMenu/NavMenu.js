@@ -56,7 +56,7 @@ const NavMenu = () => {
                 fixed="top"
                 className={(isSticky || isCollapsed) ? "shadow-sm bg-white py-2" : "py-4"}>
                 <Container>
-                    <HashLink className="text-decoration-none" to="/home#banner">
+                    <HashLink className="text-decoration-none" to="/">
                         <div className="d-md-flex align-items-center">
                             <img style={{ height: '35px' }} className="img-fluid" src={logo} alt="Logo" />
                             <h5 className="text-danger fw-bold border-bottom mx-2" style={{ marginBottom: '-10px' }}>Super car shop</h5>
@@ -72,11 +72,11 @@ const NavMenu = () => {
                             <Nav.Link className="btn" as={HashLink} to="/">Contact</Nav.Link>
 
                         </Nav>
-                        <Nav style={{ marginBottom: '-15px' }}>
-                            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                            {user?.email ? <Nav.Link onClick={handleLogout}> Logout</Nav.Link>
+                        <Nav className="d-md-flex align-items-center" style={{ marginBottom: '-10px' }}>
+                            {user?.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
+                            {user?.email ? <Nav.Link onClick={handleLogout}> <button className="btn btn-outline-danger px-3 py-0 rounded-pill ">Logout</button></Nav.Link>
 
-                                : <Nav.Link as={Link} to="/login"> Login</Nav.Link>}
+                                : <Nav.Link as={Link} to="/login"><button className="btn btn-outline-info px-3 py-0 rounded-pill ">Login</button> </Nav.Link>}
                             {user?.email && <Nav.Link as="small" className="text-danger mt-1">{user?.displayName || user?.email}</Nav.Link>}
                         </Nav>
                     </Navbar.Collapse>

@@ -42,7 +42,7 @@ const Login = () => {
         <>
             <NavMenu></NavMenu>
             <div className="container">
-                {loading && <CircularProgress />}
+                {loading && <CircularProgress sx={{ mt: 5 }} />}
                 <div className=" py-4 shadow" style={{ borderRadius: '30px', backgroundColor: '#f1f2f6', marginTop: '100px' }}>
                     <Typography variant="h4">Please Login</Typography>
                     <form onSubmit={handleLoginSubmit}>

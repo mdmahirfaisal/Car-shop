@@ -16,8 +16,8 @@ const AllProduct = ({ product }) => {
                 <Card onClick={pdModalOpen} style={{ cursor: 'pointer' }}
                     className="border-0 h-100 card-background"
                 >
-                    <Card.Img variant="top" src={img} className="img-fluid p-3 service-image" style={{ height: "" }} />
-                    <Card.Body className="pt-0">
+                    <Card.Img variant="top" src={img} className="img-fluid py-2 px-3 service-image" style={{ maxHeight: "200px" }} />
+                    <Card.Body className="pt-0" style={{ height: '' }}>
                         <Card.Title as="h5" className="">{name}</Card.Title>
                         <Card.Title as="h4" className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
                         <Card.Text>

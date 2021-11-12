@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
+
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { TextField, Button } from '@mui/material';
 import Swal from 'sweetalert2'
+import { Card, Container, Table } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth';
 
 
 
 const style = {
     position: 'absolute',
     borderRadius: '20px',
+    width: '80%',
     top: '50%',
     left: '50%',
     border: 'none',
@@ -21,32 +25,42 @@ const style = {
 };
 
 const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
-    const [productInfo, seteProductInfo] = useState()
+    const { user } = useAuth();
 
-    const handleOnBlur = (e) => {
-        const field = e.target.name;
-        const value = e.target.value;
-        const newInfo = { ...productInfo };
-        newInfo[field] = value;
-        seteProductInfo(newInfo)
 
+    const { name, price, img, description } = product;
+    const addOrder = {
+        name,
+        price,
+        img,
+        description
     };
 
+    /// Add order to database
+    const userData = { status: 'panging', name: user.displayName, email: user.email };
 
-    /// handle product submit 
-    const handleProductSubmit = (e) => {
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Yes...',
-            text: 'Your order placed successfully',
-            footer: ''
+    const handlePlaceOrder = () => {
+        const newOrder = { ...userData, ...addOrder, orderTime: new Date() };
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newOrder)
         })
-        pdModalClose();
-        e.preventDefault();
-    }
-
-
+            .then(res => res.json())
+            .then(data => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Yes...',
+                    text: 'Your order placed successfully',
+                    footer: ''
+                })
+                pdModalClose();
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    };
 
     return (
         <Modal
@@ -55,37 +69,62 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
             open={modalOpenPd}
             onClose={pdModalClose}
             closeAfterTransition
-            // BackdropComponent={Backdrop}
+            style={{ backgroundColor: 'lightgrey' }}
+            BackdropComponent={Backdrop}
             BackdropProps={{
                 timeout: 400,
             }}
         >
             <Fade in={modalOpenPd}>
                 <Box sx={style}>
-                    <Typography id="transition-modal-title" variant="h6" component="h2">
-                        {product?.name}
-                    </Typography>
+
                     <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                        <form onSubmit={handleProductSubmit}>
 
-                            <TextField onClick={handleOnBlur} style={{ margin: '10px 0' }} fullWidth label="Your name"
-                                name="patientName"
-                                defaultValue=""
-                                id="fullWidth"
-                            />
-                            <TextField onClick={handleOnBlur} style={{ margin: '10px 0' }} fullWidth label="Your email"
-                                name="email"
-                                defaultValue="" id="fullWidth"
-                            />
-                            <TextField onClick={handleOnBlur} style={{ margin: '10px 0' }} fullWidth label="Phone number"
-                                name="phone"
-                                id="fullWidth"
-                            />
-                            <TextField style={{ margin: '10px 0' }} disabled fullWidth label="Set date" defaultValue="" id="fullWidth"
-                            />
-                            <Button variant="contained" type="submit">Send</Button>
+                        <Container>
+                            <h2 className="text-secondary fw-bold mb-1 text-center">CHECK OUT</h2>
+                            <div className="row">
+                                <div className="col-sm-12 col-md-5">
+                                    <Card className="h-100 shadow-sm">
+                                        <Card.Img variant="top" src={img} style={{ height: "" }} />
+                                        <Card.Body className="px-3">
+                                            <Card.Title className="fw-bold  text-danger fs-4">{name}</Card.Title>
+                                            <Card.Text>
+                                                {description}
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card>
 
-                        </form>
+                                </div>
+                                <div className="col-sm-12 col-md-7">
+                                    <div className="shadow px-4 pt-2 my-3" style={{ borderRadius: "15px" }}>
+                                        <Table hover responsive>
+                                            <thead>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{name}</td>
+                                                    <td>1</td>
+                                                    <td>$ {price}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colSpan="2">Total</td>
+                                                    <td>$ {price}</td>
+                                                </tr>
+                                            </tfoot>
+                                        </Table>
+                                    </div>
+                                    <button onClick={handlePlaceOrder} className=" btn btn-danger w-100 rounded-pill">Checkout</button>
+                                </div>
+                            </div>
+                        </Container>
+
                     </Typography>
                 </Box>
             </Fade>
