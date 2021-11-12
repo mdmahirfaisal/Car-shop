@@ -5,11 +5,13 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
+// import useAuth from '../../../hooks/useAuth'
+
 
 
 
 const Banner = () => {
-
+    // const { user } = useAuth();
     const history = useHistory();
 
     const handleClick = () => {

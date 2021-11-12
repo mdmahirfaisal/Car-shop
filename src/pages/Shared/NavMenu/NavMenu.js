@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import useAuth from '../../../hooks/useAuth';
 import logo from './img/logo.png';
+import Swal from 'sweetalert2'
+
 
 
 const NavMenu = () => {
     const [isSticky, setSticky] = React.useState(false);
     const [isCollapsed, setCollapsed] = React.useState(null);
+    const { user, logOut } = useAuth();
+    const history = useHistory()
 
 
     React.useEffect(() => {
@@ -19,6 +24,29 @@ const NavMenu = () => {
             }
         })
     }, []);
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't to Logout!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                history.push('/')
+                Swal.fire(
+                    'Login out',
+                    'Logout successfully.',
+                    'success'
+                )
+            }
+        })
+    }
+
 
     return (
         <>
@@ -44,9 +72,12 @@ const NavMenu = () => {
                             <Nav.Link className="btn" as={HashLink} to="/">Contact</Nav.Link>
 
                         </Nav>
-                        <Nav style={{ marginBottom: '-10px' }}>
+                        <Nav style={{ marginBottom: '-15px' }}>
                             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                            <Nav.Link as={Link} to="/login"> Login</Nav.Link>
+                            {user?.email ? <Nav.Link onClick={handleLogout}> Logout</Nav.Link>
+
+                                : <Nav.Link as={Link} to="/login"> Login</Nav.Link>}
+                            {user?.email && <Nav.Link as="small" className="text-danger mt-1">{user?.displayName || user?.email}</Nav.Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

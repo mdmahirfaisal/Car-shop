@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound/NotFound';
 import AllProducts from './pages/AllProducts/AllProducts';
 import Register from './pages/Login/Register/Register';
 import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -24,14 +25,14 @@ function App() {
               <Home></Home>
             </Route>
 
-            <Route path="/allProducts">
+            <PrivateRoute path="/allProducts">
               <AllProducts></AllProducts>
-            </Route>
+            </PrivateRoute>
 
 
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
 
 
             <Route path="/login">
