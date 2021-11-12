@@ -1,23 +1,29 @@
 import * as React from 'react';
+import './Dashboard.css';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import MenuIcon from '@mui/icons-material/Menu';
+
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button, } from '@mui/material';
+import { Button, IconButton, } from '@mui/material';
 import {
     Switch,
     Route,
     Link,
-    useRouteMatch
+    useRouteMatch,
+    NavLink
 } from "react-router-dom";
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import AddProduct from '../AddProduct/AddProduct';
+import Bookings from '../Bookings/Bookings';
+import ManageOrders from '../ManageOrders/ManageOrders';
 
 
 
@@ -34,12 +40,14 @@ function Dashboard(props) {
     };
 
     const drawer = (
-        <div>
+        <div className=" side-navbar">
             <Toolbar />
             <Divider />
-            <Box>
+            <Box className="text-start ms-5">
                 <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Products</Button></Link><br />
                 <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Dashboard</Button></Link><br />
+                <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Booking List</Button></Link><br />
+                <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Manage orders</Button></Link><br />
                 <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Make Admin</Button></Link><br />
                 <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Add Product</Button></Link>
             </Box>
@@ -57,11 +65,24 @@ function Dashboard(props) {
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
                 }}
+                className="shadow-sm bg-light text-danger"
             >
                 <Toolbar>
-
-                    <Typography sx={{ fontWeight: 400 }} variant="h5" noWrap component="div">
-                        Appointments
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <div><img src="https://i.ibb.co/D1gYjbd/logo.png" style={{ height: '35px' }} alt="" /></div>
+                    <Typography variant="h5" className="ms-3" noWrap component="div">
+                        Super Car Shop
+                    </Typography>
+                    <Typography noWrap component="div">
+                        <NavLink className="ms-3 text-decoration-none" to="/home"><Button variant="text">Back to Home</Button></NavLink>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -106,11 +127,20 @@ function Dashboard(props) {
 
                     </Route>
 
+                    <Route path={`${path}/bookings`}>
+                        <Bookings></Bookings>
+                    </Route>
+
+
+                    <AdminRoute path={`${path}/manageOrders`}>
+                        <ManageOrders></ManageOrders>
+                    </AdminRoute>
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </AdminRoute>
 
-                    <AdminRoute path={`${path}/`}>
+
+                    <AdminRoute path={`${path}/addProduct`}>
                         <AddProduct></AddProduct>
                     </AdminRoute>
                 </Switch>

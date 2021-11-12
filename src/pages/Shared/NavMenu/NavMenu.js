@@ -78,6 +78,7 @@ const NavMenu = () => {
 
                                 : <Nav.Link as={Link} to="/login"><button className="btn btn-outline-info px-3 py-0 rounded-pill ">Login</button> </Nav.Link>}
                             {user?.email && <Nav.Link as="small" className="text-danger mt-1">{user?.displayName || user?.email}</Nav.Link>}
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
