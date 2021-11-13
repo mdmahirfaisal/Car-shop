@@ -12,38 +12,64 @@ const MakeAdmin = () => {
 
     const handleOnBlur = (e) => {
         setEmail(e.target.value);
-        // console.log(email);
     }
 
     const handleMakeAdmin = (e) => {
         const user = { email };
-        fetch('', {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-info ms-2',
+                cancelButton: 'btn btn-danger me-2'
             },
-            body: JSON.stringify(user)
+            buttonsStyling: false
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount) {
-                    console.log(data);
-                    setEmail('');
-                    setAdminSuccess(true);
-                    if (adminSuccess) {
-                        Swal.fire({
-                            position: 'top-middle',
-                            icon: 'success',
-                            title: 'New Admin Created Successfully',
-                            showConfirmButton: false,
-                            timer: 3000
-                        })
-                    }
-                }
-            })
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be Create an a admin!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Create !',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('https://lit-citadel-97865.herokuapp.com/users/admin', {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount) {
+                            console.log(data);
+                            setEmail('');
+                            setAdminSuccess(true);
+                            swalWithBootstrapButtons.fire(
+                                'Created',
+                                'New admin created successfully.',
+                                'success'
+                            )
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                'Cancelled request',
+                                'Admin created failed. You are not a admin)',
+                                'error'
+                            )
+                        }
+                    })
+
+            }
+
+        })
 
         e.preventDefault();
     }
+
 
     return (
         <div >

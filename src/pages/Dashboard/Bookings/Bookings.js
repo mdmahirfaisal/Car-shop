@@ -20,7 +20,7 @@ const Bookings = () => {
     const [bookings, setBookings] = React.useState([]);
 
     React.useEffect(() => {
-        const url = `http://localhost:5000/orders?email=${user.email}`;
+        const url = `https://lit-citadel-97865.herokuapp.com/orders?email=${user.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setBookings(data))
@@ -48,7 +48,7 @@ const Bookings = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                const url = `http://localhost:5000/orders/${id}`;
+                const url = `https://lit-citadel-97865.herokuapp.com/orders/${id}`;
                 fetch(url, {
                     method: 'DELETE'
                 })
@@ -83,7 +83,7 @@ const Bookings = () => {
         <div style={{ backgroundColor: '#dfe4ea', padding: '' }} >
             <h1 className="fw-bold text-danger py-3">MY ORDERS</h1>
             <Paper sx={{ width: '100%', overflow: 'hidden', }}>
-                <TableContainer sx={{ maxHeight: 600, backgroundColor: '#fff' }}>
+                <TableContainer sx={{ backgroundColor: '#fff', paddingBottom: '10px' }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>

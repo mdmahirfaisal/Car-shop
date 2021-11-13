@@ -88,7 +88,7 @@ const AllProducts = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://lit-citadel-97865.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setShowProducts(data);

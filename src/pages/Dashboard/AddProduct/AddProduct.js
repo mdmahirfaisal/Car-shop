@@ -13,7 +13,7 @@ const AddProduct = () => {
     const onSubmit = data => {
         console.log(data)
         reset()
-        axios.post('http://localhost:5000/products', data)
+        axios.post('https://lit-citadel-97865.herokuapp.com/products', data)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId) {

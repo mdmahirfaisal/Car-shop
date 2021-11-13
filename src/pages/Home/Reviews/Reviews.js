@@ -9,7 +9,7 @@ const Reviews = () => {
     const { setLoading } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://lit-citadel-97865.herokuapp.com/review')
             .then(res => res.json())
             .then(data => {
                 setAllReviews(data);

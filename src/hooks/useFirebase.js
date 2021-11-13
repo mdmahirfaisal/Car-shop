@@ -12,8 +12,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [authError, setAuthError] = useState('');
     const [loading, setLoading] = useState(true);
-    // const [admin, setAdmin] = useState(false);
-    // const [token, setToken] = useState('');
+    const [admin, setAdmin] = useState(false);
 
 
     const [modalOpenPd, setModalOpenPd] = useState(false);
@@ -36,9 +35,9 @@ const useFirebase = () => {
             .then((result) => {
                 const destination = location?.state?.from || '/';
                 history.replace(destination);
-                // const user = result.user;
+                const user = result.user;
                 // save to database or update
-                // saveUser(user.email, user.displayName, 'PUT')
+                saveUser(user.email, user.displayName, 'PUT')
                 setAuthError('')
 
             })
@@ -56,6 +55,10 @@ const useFirebase = () => {
                 setAuthError('');
                 const newUser = { email, displayName: name };
                 setUser(newUser);
+
+                // database save user
+                saveUser(email, name, 'POST');
+
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -110,29 +113,35 @@ const useFirebase = () => {
         return () => unsubscribe;
     }, [auth]);
 
-    // useEffect(() => {
-    //     fetch(`/users/${user.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setAdmin(data.admin))
-    // }, [user.email]);
+    useEffect(() => {
+        fetch(`https://lit-citadel-97865.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email]);
 
 
-    // save to database 
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     console.log(user);
-    //     fetch('', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
+
+
+    /// save to database 
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        console.log(user);
+        fetch('https://lit-citadel-97865.herokuapp.com/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return {
         user,
+        admin,
         authError,
         loading,
         signInWithGoogle,

@@ -24,7 +24,7 @@ const ManageOrders = () => {
     const { user } = useAuth();
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://lit-citadel-97865.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
             .catch(error => {
@@ -40,7 +40,7 @@ const ManageOrders = () => {
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
                 <Paper sx={{ width: '100%', overflow: 'hidden', }}>
-                    <TableContainer sx={{ maxHeight: 600, backgroundColor: '#fff' }}>
+                    <TableContainer sx={{ maxHeight: 700, backgroundColor: '#f5f6fa' }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>

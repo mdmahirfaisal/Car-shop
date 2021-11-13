@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
+import Rating from '@mui/material/Rating';
 
 
 
@@ -18,7 +19,7 @@ const ReviewList = ({ review }) => {
                     <Card.Body className="pt-0">
                         <Card.Title as="h4" className="">{name}</Card.Title>
                         <Card.Title as="h6" className="">{email}</Card.Title>
-                        <Card.Title as="p" className=" text-danger"> {rating}</Card.Title>
+                        <Card.Title as="p" className=" text-danger"> <Rating name="size-medium" defaultValue={rating || 3} /> </Card.Title>
                         <Card.Text>
                             {message}
                         </Card.Text>

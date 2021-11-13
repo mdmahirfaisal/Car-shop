@@ -10,11 +10,10 @@ const AddReview = () => {
     const { user } = useAuth();
 
     const onSubmit = data => {
-        data = user.photoURL;
         console.log(data, user);
 
         reset()
-        axios.post('http://localhost:5000/review', data)
+        axios.post('https://lit-citadel-97865.herokuapp.com/review', data)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId) {

@@ -37,7 +37,7 @@ import Swal from 'sweetalert2'
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { logOut } = useAuth();
+    const { logOut, admin } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const history = useHistory();
@@ -76,18 +76,28 @@ function Dashboard(props) {
             <Box className="text-start ms-2">
                 <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}>  <Button className="fs-6  mt-3" color="inherit"><i className="fas fa-cart-plus fs-5 me-2 text-dark"></i> Products</Button></Link><br />
 
-                <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
+                <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
 
-                <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fab fa-amazon-pay fs-5 me-2 text-dark fw-bold"></i>   Pay now</Button></Link><br />
 
-                <Link to={`${url}/addReview`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fas fa-comment-dots fs-5 me-2 text-dark fw-bold"></i> Review</Button></Link><br />
-                <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-list-ul fs-5 me-2 text-dark"></i> Booking List</Button></Link><br />
+                {admin && <Box>
+                    <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Manage orders</Button></Link><br />
 
-                <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Manage orders</Button></Link><br />
+                    <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Make Admin</Button></Link><br />
 
-                <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Make Admin</Button></Link><br />
+                    <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-plus-circle fs-5 me-2 text-dark"></i> Add Product</Button></Link>
+                </Box>}
 
-                <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-plus-circle fs-5 me-2 text-dark"></i> Add Product</Button></Link>
+                {!admin && <Box>
+                    <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'black' }} className="mt-3"> <Button color="inherit"><i className="fab fa-amazon-pay fs-5 me-2 text-dark fw-bold"></i>   Pay now</Button></Link><br />
+
+
+                    <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-list-ul fs-5 me-2 text-dark"></i> Booking List</Button></Link><br />
+
+
+                    <Link to={`${url}/addReview`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-comment-dots fs-5 me-2 text-dark fw-bold"></i> Review</Button></Link><br />
+                </Box>}
+
+
             </Box>
         </div>
     );
@@ -185,6 +195,7 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/manageOrders`}>
                         <ManageOrders></ManageOrders>
                     </AdminRoute>
+
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </AdminRoute>

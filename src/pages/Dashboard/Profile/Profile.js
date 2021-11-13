@@ -39,10 +39,10 @@ const Profile = () => {
                 >
                     <Card.Img variant="top" src={user.photoURL} className="p-3 w-50 mx-auto" style={{ maxHeight: "250px", borderRadius: '30px' }} />
                     <Card.Body className="pt-0">
-                        <Card.Title as="h5" className="">{user.displayName}</Card.Title>
-                        <Card.Title as="h5" className="">{user.email}</Card.Title>
+                        <Card.Title as="h4" className="fw-bold text-danger">{user.displayName}</Card.Title>
+                        <Card.Title as="h5" className="mt-5">{user.email}</Card.Title>
                     </Card.Body>
-                    <button onClick={handleLogoutProfile} className="btn btn-danger w-75 mx-auto mb-3">LOGOUT</button>
+                    <button onClick={handleLogoutProfile} className="btn btn-danger w-50 rounded-pill mx-auto mb-3">LOGOUT</button>
                 </Card>
             </div>
         </div>

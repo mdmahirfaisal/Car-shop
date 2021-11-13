@@ -41,7 +41,7 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
 
     const handlePlaceOrder = () => {
         const newOrder = { ...userData, ...addOrder, orderTime: new Date() };
-        fetch('http://localhost:5000/orders', {
+        fetch('https://lit-citadel-97865.herokuapp.com/orders', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newOrder)
