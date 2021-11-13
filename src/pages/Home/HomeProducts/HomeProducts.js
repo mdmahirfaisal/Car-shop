@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-// import { Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
+import useAuth from '../../../hooks/useAuth';
 import HomeProduct from '../HomeProduct/HomeProduct';
 
 
 const HomeProducts = () => {
     const [products, setProducts] = useState([]);
-    // const {isLoading, setIsLoading}=useAuth();
+    const { loading, setLoading } = useAuth();
 
 
 
     useEffect(() => {
-        // setIsLoading(true);
-        fetch('https://secure-stream-98279.herokuapp.com/services')
+        setLoading(true);
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
-                // setIsLoading(false);
+                setLoading(false);
             })
             .catch(error => {
                 console.log(error);
@@ -25,20 +26,20 @@ const HomeProducts = () => {
 
     const limitedProducts = products.slice(0, 6);
 
-    //  <Spinner style={{ height: "100px", width: "100px" }} animation="border " variant="primary fs-1" />
+
     return (
         <div id="products">
             <h1 className="fw-bold text-secondary py-5 bg-light">OUR PRODUCTS</h1>
             <div className="container">
-
-                <div className="row">
-                    {
-                        limitedProducts?.map(product => <HomeProduct
-                            key={product._id}
-                            product={product}
-                        ></HomeProduct>)
-                    }
-                </div>
+                {loading ? <Spinner style={{ height: "100px", width: "100px" }} className="text-center" animation="border " variant="primary fs-1" /> :
+                    <div className="row">
+                        {
+                            limitedProducts?.map(product => <HomeProduct
+                                key={product._id}
+                                product={product}
+                            ></HomeProduct>)
+                        }
+                    </div>}
             </div>
         </div>
     );

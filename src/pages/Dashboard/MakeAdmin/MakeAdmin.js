@@ -32,11 +32,11 @@ const MakeAdmin = () => {
                     setAdminSuccess(true);
                     if (adminSuccess) {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'top-middle',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: 'New Admin Created Successfully',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         })
                     }
                 }
@@ -46,12 +46,16 @@ const MakeAdmin = () => {
     }
 
     return (
-        <div>
-            <h2>make an admin</h2>
-            <form onSubmit={handleMakeAdmin}>
-                <TextField type="email" onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '50%' }} />  <br />
-                <Button sx={{ mt: 2, width: '48%' }} type="submit" variant="contained">Make Admin</Button>
-            </form>
+        <div >
+            <div className="container">
+                <div className="shadow py-4" style={{ borderRadius: '30px', height: '600px' }}>
+                    <h2 className="fw-bold text-primary">MAKE AN A ADMIN</h2>
+                    <form onSubmit={handleMakeAdmin} className="mt-5">
+                        <TextField type="email" onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '70%' }} />  <br />
+                        <Button sx={{ mt: 2, width: '70%' }} type="submit" variant="contained">Make Admin</Button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

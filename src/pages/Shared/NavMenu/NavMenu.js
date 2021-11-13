@@ -69,7 +69,7 @@ const NavMenu = () => {
                             <Nav.Link className="btn" as={HashLink} to="/home#about">About</Nav.Link>
                             <Nav.Link className="btn" as={HashLink} to="/home#products">Products</Nav.Link>
                             <Nav.Link className="btn" as={HashLink} to="/home#review">Review</Nav.Link>
-                            <Nav.Link className="btn" as={HashLink} to="/">Contact</Nav.Link>
+                            <Nav.Link className="btn" as={HashLink} to="/home#contact">Contact</Nav.Link>
 
                         </Nav>
                         <Nav className="d-md-flex align-items-center" style={{ marginBottom: '-10px' }}>
