@@ -34,22 +34,22 @@ const StyledInputElement = styled('input')`
   }
 `;
 
-const ContactUs = () => {
+const Pay = () => {
 
     const handleContact = (e) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be Contact us on our team",
+            text: "You won't be Payment Please weight",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Send message'
+            confirmButtonText: 'Pay now'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(
                     'Sorry',
-                    'Email js message sender is not implemented.',
+                    'Payment is not implemented.',
                     'error'
                 )
             }
@@ -59,9 +59,9 @@ const ContactUs = () => {
     }
 
     return (
-        <div id="contact" style={{ paddingBottom: "100px", backgroundColor: '#57606f' }}>
+        <div id="contact" style={{ backgroundColor: '#dfe4ea', borderRadius: '50px' }}>
             <div className="container py-5">
-                <h2 className="fw-bold text-info">CONTACT US</h2>
+                <h2 className="fw-bold text-info">Payment is coming soon</h2>
                 <form onSubmit={handleContact} className=" py-3 ">
 
                     <TextField required
@@ -130,4 +130,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs;
+export default Pay;

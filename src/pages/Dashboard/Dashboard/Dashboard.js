@@ -11,6 +11,7 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button, IconButton, } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 import {
     Switch,
     Route,
@@ -24,32 +25,69 @@ import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import AddProduct from '../AddProduct/AddProduct';
 import Bookings from '../Bookings/Bookings';
 import ManageOrders from '../ManageOrders/ManageOrders';
+import Pay from '../Pay/Pay';
+import Profile from '../Profile/Profile';
+import AddReview from './AddReview/AddReview';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2'
+
 
 
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
+    const { logOut } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const history = useHistory();
 
     let { path, url } = useRouteMatch();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
+    const dashboardLogout = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't to Logout!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                history.push('/')
+                Swal.fire(
+                    'Login out',
+                    'Logout successfully.',
+                    'success'
+                )
+            }
+        })
+    }
+
     const drawer = (
         <div className=" side-navbar">
             <Toolbar />
             <Divider />
-            <Box className="text-start ms-5">
-                <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Products</Button></Link><br />
-                <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Dashboard</Button></Link><br />
-                <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Booking List</Button></Link><br />
-                <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Manage orders</Button></Link><br />
-                <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Make Admin</Button></Link><br />
-                <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit">Add Product</Button></Link>
+            <Box className="text-start ms-2">
+                <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}>  <Button className="fs-6  mt-3" color="inherit"><i className="fas fa-cart-plus fs-5 me-2 text-dark"></i> Products</Button></Link><br />
+
+                <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
+
+                <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fab fa-amazon-pay fs-5 me-2 text-dark fw-bold"></i>   Pay now</Button></Link><br />
+
+                <Link to={`${url}/addReview`} style={{ textDecoration: 'none', color: 'black' }}> <Button color="inherit"><i className="fas fa-comment-dots fs-5 me-2 text-dark fw-bold"></i> Review</Button></Link><br />
+                <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-list-ul fs-5 me-2 text-dark"></i> Booking List</Button></Link><br />
+
+                <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Manage orders</Button></Link><br />
+
+                <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Make Admin</Button></Link><br />
+
+                <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }}><Button color="inherit"><i className="fas fa-plus-circle fs-5 me-2 text-dark"></i> Add Product</Button></Link>
             </Box>
         </div>
     );
@@ -82,7 +120,10 @@ function Dashboard(props) {
                         Super Car Shop
                     </Typography>
                     <Typography noWrap component="div">
-                        <NavLink className="ms-3 text-decoration-none" to="/home"><Button variant="text">Back to Home</Button></NavLink>
+                        <NavLink className="ms-3 text-decoration-none text-dark" to="/home"><Button variant="text">Back to Home</Button></NavLink>
+                    </Typography>
+                    <Typography noWrap component="div">
+                        <Button onClick={dashboardLogout} variant="text">Logout</Button>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -117,14 +158,23 @@ function Dashboard(props) {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box
+            <Box className="dashboard-container"
                 component="main"
                 sx={{ flexGrow: 1, p: 2, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
                 <Switch>
-                    <Route exact path={path}>
+                    <Route path={`${path}/dashboard`}>
+                        <Profile></Profile>
+                    </Route>
 
+                    <Route path={`${path}/pay`}>
+                        <Pay></Pay>
+                    </Route>
+
+
+                    <Route path={`${path}/addReview`}>
+                        <AddReview></AddReview>
                     </Route>
 
                     <Route path={`${path}/bookings`}>
@@ -143,6 +193,9 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/addProduct`}>
                         <AddProduct></AddProduct>
                     </AdminRoute>
+                    <Route exact path={`${path}/`}>
+                        <Profile></Profile>
+                    </Route>
                 </Switch>
 
             </Box>

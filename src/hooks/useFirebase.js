@@ -16,9 +16,14 @@ const useFirebase = () => {
     // const [token, setToken] = useState('');
 
 
-    const [loginModalOpen, setLoginModalOpen] = useState(false);
-    const handleLoginOpen = () => setLoginModalOpen(true);
-    const handleLoginClose = () => setLoginModalOpen(false);
+    const [modalOpenPd, setModalOpenPd] = useState(false);
+    const pdModalOpen = () => setModalOpenPd(true);
+    const pdModalClose = () => setModalOpenPd(false);
+
+
+    // const [loginModalOpen, setLoginModalOpen] = useState(false);
+    // const handleLoginOpen = () => setLoginModalOpen(true);
+    // const handleLoginClose = () => setLoginModalOpen(false);
 
 
     const auth = getAuth();
@@ -94,7 +99,6 @@ const useFirebase = () => {
 
     // firebase observer user state
     useEffect(() => {
-        setLoading(true);
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
@@ -102,7 +106,7 @@ const useFirebase = () => {
                 setUser({});
             }
             setLoading(false)
-        });
+        })
         return () => unsubscribe;
     }, [auth]);
 
@@ -137,9 +141,10 @@ const useFirebase = () => {
         logOut,
         setLoading,
         setAuthError,
-        handleLoginOpen,
-        handleLoginClose,
-        loginModalOpen,
+        setModalOpenPd,
+        modalOpenPd,
+        pdModalOpen,
+        pdModalClose,
 
     }
 };

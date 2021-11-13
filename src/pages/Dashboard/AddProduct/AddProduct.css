@@ -1,9 +1,7 @@
-.add-background{
-    height: 100vh;
-    background-color: #ced6e0;
-    }
+
     .form-container{
         border-radius: 30px;
+        background-color: rgb(239, 255, 255);
     }
     .form-container form{
         border-radius: 30px;

@@ -100,14 +100,14 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
                                         <Table hover responsive>
                                             <thead>
                                                 <tr>
-                                                    <th>Description</th>
+                                                    <th>Email</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>{name}</td>
+                                                    <td>{user.email}</td>
                                                     <td>1</td>
                                                     <td>$ {price}</td>
                                                 </tr>
@@ -124,7 +124,6 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
                                 </div>
                             </div>
                         </Container>
-
                     </Typography>
                 </Box>
             </Fade>

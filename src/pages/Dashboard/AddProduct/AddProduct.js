@@ -33,16 +33,13 @@ const AddProduct = () => {
 
     };
 
-
-
-
     return (
         <div className="add-background py-3 ">
-            <h2 className="fw-bold text-secondary mt-5">PLEASE ADD A PRODUCT</h2>
-            <div className="container shadow p-5 form-container">
+            <h2 className="fw-bold text-secondary mt-3">PLEASE ADD A PRODUCT</h2>
+            <div className="container shadow p-4 form-container">
                 <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column w-100  p-3 form-control">
                     <Form.Label>Name</Form.Label>
-                    <input className="mb-2 form-control " {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
+                    <input className="mb-2 form-control " {...register("name", { required: true, maxLength: 40 })} placeholder="Name" />
                     <Form.Label>Price</Form.Label>
                     <input className="mb-2 form-control " type="number" {...register("price")} placeholder="Price" />
                     <Form.Label>Image URL</Form.Label>

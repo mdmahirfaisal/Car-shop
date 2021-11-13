@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2'
+
 
 const tableStyle = {
     borderRight: '1px solid gray'
@@ -26,6 +28,57 @@ const Bookings = () => {
 
     }, [user]);
 
+
+    // handle delete 
+    const handleDeleteOrder = (id) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ms-2',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this item!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `http://localhost:5000/orders/${id}`;
+                fetch(url, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const available = bookings.filter(user => user._id !== id);
+                            setBookings(available);
+
+                            swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+
+
+    };
     return (
         <div style={{ backgroundColor: '#dfe4ea', padding: '' }} >
             <h1 className="fw-bold text-danger py-3">MY ORDERS</h1>
@@ -53,7 +106,7 @@ const Bookings = () => {
                                     </TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} align="left">{row.name} <br /> <small className="text-dark">{new Date(row.orderTime).toDateString()}</small> </TableCell>
                                     <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row.price}</TableCell>
-                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row.status}</TableCell>
+                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row.status} <button onClick={() => handleDeleteOrder(row._id)} className="btn btn-danger  px-3 py-0 ms-lg-3 rounded-pill">Cancel</button> </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

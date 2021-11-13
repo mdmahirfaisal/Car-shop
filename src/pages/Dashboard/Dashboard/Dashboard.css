@@ -1,4 +1,9 @@
 .side-navbar{
-    background-color: #48dbfb;
+    background-color: #f5f6fa;
+    height: 100vh;
+}
+
+.dashboard-container{
+    background-color: #dcdde1;
     height: 100vh;
 }

@@ -11,16 +11,15 @@ const HomeProducts = () => {
 
 
     useEffect(() => {
-        setLoading(true);
         fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
-                setLoading(false);
             })
             .catch(error => {
                 console.log(error);
             })
+            .finally(() => setLoading(false))
 
     }, []);
 

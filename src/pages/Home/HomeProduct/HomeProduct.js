@@ -3,43 +3,49 @@ import './HomeProduct.css';
 import Fade from 'react-reveal/Fade';
 import Swal from 'sweetalert2'
 
-import { Card } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
 
+import { Card } from 'react-bootstrap';
+import ProductsModal from '../../ProductsModal/ProductsModal';
+import useAuth from '../../../hooks/useAuth';
+import { useHistory } from 'react-router';
 
 
 const HomeProduct = ({ product }) => {
     const { name, price, img, } = product;
+    const { user, pdModalClose, modalOpenPd, pdModalOpen } = useAuth();
     const history = useHistory();
 
-    const handleClick = () => {
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you really want to see all the products?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'View all products !!!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Opened',
-                    'All product pages are opened.',
-                    'success'
-                )
-                history.push("/allProducts");
-            }
-        })
-
+    const handlePdModal = () => {
+        if (user?.email) {
+            pdModalOpen();
+        }
+        else {
+            Swal.fire({
+                title: 'File Not Opened',
+                text: "Please Login first",
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Open Login Form'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    history.push('/login')
+                    Swal.fire(
+                        'Login Form Opened',
+                        'Login page opened successfully.',
+                        'success'
+                    )
+                }
+            })
+        }
     }
 
     return (
         <>
             <Fade bottom duration={3000} distance="50px">
                 <div className="mb-5 text-center service-detail col-sm-12 col-md-6 col-lg-4 ">
-                    <Card onClick={handleClick} style={{ cursor: 'pointer' }}
+                    <Card onClick={handlePdModal} style={{ cursor: 'pointer' }}
                         className="border-0 h-100 card-background"
                     >
                         <Card.Img variant="top" src={img} className="img-fluid p-3 service-image" style={{ height: "" }} />
@@ -50,6 +56,11 @@ const HomeProduct = ({ product }) => {
                     </Card>
                 </div>
             </Fade>
+            <ProductsModal
+                modalOpenPd={modalOpenPd}
+                pdModalClose={pdModalClose}
+                product={product}
+            ></ProductsModal>
         </>
     );
 };

@@ -1,13 +1,11 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth';
 import ProductsModal from '../ProductsModal/ProductsModal';
 
 const AllProduct = ({ product }) => {
     const { name, price, img, description } = product;
-
-    const [modalOpenPd, setModalOpenPd] = React.useState(false);
-    const pdModalOpen = () => setModalOpenPd(true);
-    const pdModalClose = () => setModalOpenPd(false);
+    const { modalOpenPd, pdModalClose, pdModalOpen } = useAuth();
 
 
     return (
