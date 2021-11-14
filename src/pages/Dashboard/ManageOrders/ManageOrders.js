@@ -26,7 +26,7 @@ const ManageOrders = () => {
     const { user } = useAuth();
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://lit-citadel-97865.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
             .catch(error => {
@@ -53,7 +53,7 @@ const ManageOrders = () => {
 
         const modifiedStatus = { id, status }
 
-        axios.put('http://localhost:5000/updateOrderStatus', modifiedStatus)
+        axios.put('https://lit-citadel-97865.herokuapp.com/updateOrderStatus', modifiedStatus)
             .then(res => res.data && Swal.fire({
                 position: 'top-middle',
                 icon: 'success',
