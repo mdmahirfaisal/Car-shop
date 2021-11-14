@@ -14,7 +14,6 @@ const tableStyle = {
     borderRight: '1px solid gray'
 }
 
-
 const Bookings = () => {
     const { user } = useAuth();
     const [bookings, setBookings] = React.useState([]);

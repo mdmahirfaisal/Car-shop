@@ -12,6 +12,7 @@ const MakeAdmin = () => {
 
     const handleOnBlur = (e) => {
         setEmail(e.target.value);
+
     }
 
     const handleMakeAdmin = (e) => {
@@ -57,7 +58,7 @@ const MakeAdmin = () => {
                         ) {
                             swalWithBootstrapButtons.fire(
                                 'Cancelled request',
-                                'Admin created failed. You are not a admin)',
+                                'Admin created failed. User is not exists)',
                                 'error'
                             )
                         }
@@ -66,6 +67,7 @@ const MakeAdmin = () => {
             }
 
         })
+
 
         e.preventDefault();
     }

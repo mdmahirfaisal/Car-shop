@@ -11,7 +11,7 @@ import { useHistory } from 'react-router';
 
 
 const HomeProduct = ({ product }) => {
-    const { name, price, img, } = product;
+    const { name, price, img, description } = product;
     const { user, pdModalClose, modalOpenPd, pdModalOpen } = useAuth();
     const history = useHistory();
 
@@ -52,6 +52,7 @@ const HomeProduct = ({ product }) => {
                         <Card.Body className="pt-0">
                             <Card.Title as="h5" className="">{name}</Card.Title>
                             <Card.Title as="h4" className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
+                            <p>{description}</p>
                         </Card.Body>
                     </Card>
                 </div>
