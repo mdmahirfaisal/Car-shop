@@ -4,35 +4,71 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import Swal from 'sweetalert2'
+
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 
+
 import useAuth from '../../../hooks/useAuth';
-
-
+import axios from 'axios';
 
 const tableStyle = {
     borderRight: '1px solid gray'
 }
 
-
 const ManageOrders = () => {
     const [allOrders, setAllOrders] = React.useState([]);
+
     const { user } = useAuth();
 
     React.useEffect(() => {
-        fetch('https://lit-citadel-97865.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
             .catch(error => {
-
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'error',
+                    title: `Set to ${error}`,
+                    showConfirmButton: false,
+                    timer: 3000
+                })
             })
     }, []);
-    console.log(allOrders);
 
+
+    const handleStatusChange = (id, status) => {
+        let modifiedOrders = [];
+        allOrders.forEach(order => {
+            if (order._id === id) {
+                order.status = status;
+            }
+            modifiedOrders.push(order)
+        })
+        setAllOrders(modifiedOrders);
+
+        const modifiedStatus = { id, status }
+
+        axios.put('http://localhost:5000/updateOrderStatus', modifiedStatus)
+            .then(res => res.data && Swal.fire({
+                position: 'top-middle',
+                icon: 'success',
+                title: `Set to ${status}`,
+                showConfirmButton: false,
+                timer: 3000
+            }))
+            .catch(error => Swal.fire({
+                position: 'top-middle',
+                icon: 'error',
+                title: `Set to ${error}`,
+                showConfirmButton: false,
+                timer: 3000
+            }));
+    }
 
 
     return (
@@ -70,13 +106,15 @@ const ManageOrders = () => {
                                                     status
                                                 </InputLabel>
                                                 <NativeSelect
+                                                    className={row.status === "Pending" ? "btn btn-danger" : row.status === "Done" ? "btn btn-success" : "btn btn-info"}
                                                     defaultValue={row.status}
-                                                    inputProps={{
-                                                        name: 'status',
-                                                    }}
+                                                    onChange={e => handleStatusChange(row._id, e.target.value)}
                                                 >
-                                                    <option className="bg-success" value={10}>pending</option>
-                                                    <option className="bg-info" value={20}>approve</option>
+                                                    <option className="bg-white text-muted">Pending</option>
+                                                    <option className="bg-white text-muted">On going</option>
+                                                    <option className="bg-white text-muted">Done</option>
+
+
                                                 </NativeSelect>
                                             </FormControl>
                                         </TableCell>

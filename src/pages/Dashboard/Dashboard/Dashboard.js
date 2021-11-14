@@ -30,6 +30,7 @@ import Profile from '../Profile/Profile';
 import AddReview from './AddReview/AddReview';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2'
+import ManageProducts from '../ManageProducts/ManageProducts';
 
 
 
@@ -74,20 +75,31 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <Box className="text-start ms-2">
-                <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}>  <Button className="fs-6  mt-3" color="inherit"><i className="fas fa-cart-plus fs-5 me-2 text-dark"></i> Products</Button></Link><br />
 
-                <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
+
 
 
                 {admin && <Box>
+                    <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
+
                     <Link to={`${url}/manageOrders`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Manage orders</Button></Link><br />
 
-                    <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-users-cog fs-5 me-2 text-dark"></i> Make Admin</Button></Link><br />
+                    <Link to={`${url}/manageProducts`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-cogs fs-5 me-2 text-dark"></i> Manage products</Button></Link><br />
+
+                    <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-user-shield fs-5 me-2 text-dark"></i> Make Admin</Button></Link><br />
+
 
                     <Link to={`${url}/addProduct`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-plus-circle fs-5 me-2 text-dark"></i> Add Product</Button></Link>
                 </Box>}
 
                 {!admin && <Box>
+                    <Link to="/allProducts" style={{ textDecoration: 'none', color: 'black' }}>  <Button className="fs-6  mt-3" color="inherit"><i className="fas fa-cart-plus fs-5 me-2 text-dark"></i> Products</Button></Link><br />
+
+
+                    <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
+
+
+
                     <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'black' }} className="mt-3"> <Button color="inherit"><i className="fab fa-amazon-pay fs-5 me-2 text-dark fw-bold"></i>   Pay now</Button></Link><br />
 
 
@@ -96,6 +108,7 @@ function Dashboard(props) {
 
                     <Link to={`${url}/addReview`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-comment-dots fs-5 me-2 text-dark fw-bold"></i> Review</Button></Link><br />
                 </Box>}
+
 
 
             </Box>
@@ -194,6 +207,11 @@ function Dashboard(props) {
 
                     <AdminRoute path={`${path}/manageOrders`}>
                         <ManageOrders></ManageOrders>
+                    </AdminRoute>
+
+
+                    <AdminRoute path={`${path}/manageProducts`}>
+                        <ManageProducts></ManageProducts>
                     </AdminRoute>
 
                     <AdminRoute path={`${path}/makeAdmin`}>

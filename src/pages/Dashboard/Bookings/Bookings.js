@@ -101,7 +101,7 @@ const Bookings = () => {
                                 >
                                     <TableCell style={tableStyle} align="left"><img src={row.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} component="th" scope="row">
-                                        {user.displayName}
+                                        {""}
                                     </TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} align="left">{row.name} <br /> <small className="text-dark">{new Date(row.orderTime).toDateString()}</small> </TableCell>
                                     <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row.price}</TableCell>

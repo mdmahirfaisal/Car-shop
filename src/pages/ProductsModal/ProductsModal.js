@@ -37,7 +37,7 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
     };
 
     /// Add order to database
-    const userData = { status: 'panging', name: user.displayName, email: user.email };
+    const userData = { status: 'pending', name: user.displayName, email: user.email };
 
     const handlePlaceOrder = () => {
         const newOrder = { ...userData, ...addOrder, orderTime: new Date() };
