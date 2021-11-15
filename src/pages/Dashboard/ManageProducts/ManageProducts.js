@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useHistory } from 'react-router';
 
 
 const tableStyle = {
@@ -84,8 +85,12 @@ const ManageProducts = () => {
 
     };
 
+    const history = useHistory();
 
-
+    // update product
+    const handleUpdateProduct = (id) => {
+        history.push(`/dashboard/updateProduct/${id}`)
+    }
 
 
 
@@ -116,11 +121,11 @@ const ManageProducts = () => {
                                     >
                                         <TableCell style={tableStyle} align="left"><img src={row?.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
                                         <TableCell className=" fs-6" style={tableStyle} align="left">{row?.name} <br />{console.log(row.name)}</TableCell>
-                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.description.slice(0, 50)} <br />{console.log(row.name)}</TableCell>
+                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.description.slice(0, 20)} <br />{console.log(row.name)}</TableCell>
                                         <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row?.price}</TableCell>
                                         <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
-                                            <button className="btn btn-danger rounded-pill mb-2 py-0 px-3" onClick={() => handleDeleteProduct(row?._id)}> Delete</button>
-                                            <button className="btn btn-info rounded-pill mb-2 py-0 px-3"> Update</button>
+                                            <button className="btn btn-outline-info py-1 mb-2 me-2 " onClick={() => handleUpdateProduct(row?._id)}><i className="fas fa-edit me-1"></i> Update</button>
+                                            <button className="btn btn-outline-danger mb-2  py-1" onClick={() => handleDeleteProduct(row?._id)}><i className="fas fa-trash-alt me-1"></i> Delete</button>
 
                                         </TableCell>
                                     </TableRow>

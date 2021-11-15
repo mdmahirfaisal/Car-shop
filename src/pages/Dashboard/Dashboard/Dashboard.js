@@ -31,6 +31,7 @@ import AddReview from './AddReview/AddReview';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2'
 import ManageProducts from '../ManageProducts/ManageProducts';
+import UpdateProduct from '../UpdateProduct/UpdateProduct';
 
 
 
@@ -215,6 +216,10 @@ function Dashboard(props) {
 
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
+                    </AdminRoute>
+
+                    <AdminRoute path={`${path}/updateProduct/:updateId`}>
+                        <UpdateProduct></UpdateProduct>
                     </AdminRoute>
 
 

@@ -37,7 +37,7 @@ const Profile = () => {
                 <Card
                     className="border-0 h-100" style={{ borderRadius: '30px' }}
                 >
-                    <Card.Img variant="top" src={user.photoURL} className="p-3 w-50 mx-auto" style={{ maxHeight: "250px", borderRadius: '30px' }} />
+                    <Card.Img variant="top" src={user.photoURL} className="p-3 w-50 mx-auto rounded-circle" style={{ maxHeight: "", borderRadius: '30px' }} />
                     <Card.Body className="pt-0">
                         <Card.Title as="h4" className="fw-bold text-danger">{user.displayName}</Card.Title>
                         <Card.Title as="h5" className="mt-5">{user.email}</Card.Title>

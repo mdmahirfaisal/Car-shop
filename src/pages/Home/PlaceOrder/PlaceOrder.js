@@ -89,10 +89,9 @@ const PlaceOrder = () => {
                             </div>
                             <div className="col-sm-12 col-md-7">
                                 <div className="shadow px-4 pt-2 my-3" style={{ borderRadius: "15px" }}>
-
-                                    <form onSubmit={handleSubmit(handlePlaceOrder)} className="d-flex flex-column w-100 h-100  p-3 form-control">
-                                        <TextField placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" defaultValue={user?.displayName} /> <br /> <br />
-                                        <TextField placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" defaultValue={user?.email} /> <br /> <br />
+                                    <form onSubmit={handleSubmit(handlePlaceOrder)} className="d-flex flex-column w-100 h-100  p-3 ">
+                                        <TextField placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" defaultValue={user?.displayName || ''} /> <br /> <br />
+                                        <TextField placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" defaultValue={user?.email || ''} /> <br /> <br />
                                         <TextField placeholder="Phone" fullWidth  {...register("phone")} /> <br /> <br />
 
                                         <TextField placeholder="Address" fullWidth {...register("address", { required: true })} label="Address" defaultValue={""} /> <br /> <br />
