@@ -5,15 +5,10 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
-// import useAuth from '../../../hooks/useAuth'
-
-
 
 
 const Banner = () => {
-    // const { user } = useAuth();
     const history = useHistory();
-
     const handleClick = () => {
 
         Swal.fire({
@@ -26,19 +21,18 @@ const Banner = () => {
             confirmButtonText: 'View all products !!!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Opened',
-                    'All product pages are opened.',
-                    'success'
-                )
                 history.push("/allProducts");
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'success',
+                    title: 'Available Products Opened',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         })
 
-    }
-
-
-
+    };
 
     return (
         <div id="banner" className="banner-bg py-5" >
@@ -66,7 +60,6 @@ const Banner = () => {
 
                     </div>
                 </div>
-
             </div>
         </div >
     );

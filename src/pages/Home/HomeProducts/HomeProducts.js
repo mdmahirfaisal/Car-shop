@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2'
+
 import HomeProduct from '../HomeProduct/HomeProduct';
 
 
@@ -18,7 +20,12 @@ const HomeProducts = () => {
                 setProducts(data);
             })
             .catch(error => {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error}`,
+
+                })
             })
             .finally(() => setLoading(false))
 

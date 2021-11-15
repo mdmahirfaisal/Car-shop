@@ -1,20 +1,25 @@
-import React from 'react';
 import { Card } from 'react-bootstrap';
-import useAuth from '../../hooks/useAuth';
-import ProductsModal from '../ProductsModal/ProductsModal';
+import { useHistory } from 'react-router';
+
 
 const AllProduct = ({ product }) => {
-    const { name, price, img, description } = product;
-    const { modalOpenPd, pdModalClose, pdModalOpen } = useAuth();
+    const { name, price, img, description, _id } = product;
+    console.log(product._id);
+
+    const history = useHistory();
+
+    const handlePlaceOrder = (id) => {
+        history.push(`/placeOrder/${id}`)
+    }
 
 
     return (
         <>
             <div className="mb-5 text-center service-detail col-sm-12 col-md-6 col-lg-4 ">
-                <Card onClick={pdModalOpen} style={{ cursor: 'pointer' }}
+                <Card onClick={() => handlePlaceOrder(_id)}
                     className="border-0 h-100 card-background"
                 >
-                    <Card.Img variant="top" src={img} className="img-fluid py-2 px-3 service-image" style={{ maxHeight: "200px" }} />
+                    <Card.Img variant="top" src={img} className="img-fluid py-2 px-3 service-image" style={{ maxHeight: "200px", borderRadius: '15px' }} />
                     <Card.Body className="pt-0" style={{ height: '' }}>
                         <Card.Title as="h5" className="">{name}</Card.Title>
                         <Card.Title as="h4" className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
@@ -23,12 +28,8 @@ const AllProduct = ({ product }) => {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+
             </div>
-            <ProductsModal
-                modalOpenPd={modalOpenPd}
-                pdModalClose={pdModalClose}
-                product={product}
-            ></ProductsModal>
         </>
     );
 };

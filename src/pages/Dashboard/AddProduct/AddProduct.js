@@ -11,7 +11,6 @@ const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
-        console.log(data)
         reset()
         axios.post('https://lit-citadel-97865.herokuapp.com/products', data)
             .then(res => {
@@ -24,11 +23,22 @@ const AddProduct = () => {
                         showConfirmButton: false,
                         timer: 3000
                     })
-                    reset()
+
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Order placed Canceled!',
+                    })
                 }
             })
             .catch(error => {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error}`,
+                })
             })
 
     };
@@ -41,11 +51,11 @@ const AddProduct = () => {
                     <Form.Label>Name</Form.Label>
                     <input className="mb-2 form-control " {...register("name", { required: true, maxLength: 40 })} placeholder="Name" />
                     <Form.Label>Price</Form.Label>
-                    <input className="mb-2 form-control " type="number" {...register("price")} placeholder="Price" />
+                    <input className="mb-2 form-control " type="number" {...register("price", { required: true })} placeholder="Price" />
                     <Form.Label>Image URL</Form.Label>
-                    <input className="mb-2 form-control " {...register("img")} placeholder="Image URL" />
+                    <input className="mb-2 form-control " {...register("img", { required: true })} placeholder="Image URL" />
                     <Form.Label>Description</Form.Label>
-                    <textarea className="mb-2 form-control " {...register("description")} placeholder="Description" />
+                    <textarea className="mb-2 form-control " {...register("description", { required: true })} placeholder="Description" />
                     <input className="w-75 mx-auto rounded-pill btn btn-danger" type="submit" />
                 </form>
             </div>

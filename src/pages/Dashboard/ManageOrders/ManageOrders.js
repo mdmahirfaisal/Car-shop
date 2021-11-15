@@ -11,9 +11,6 @@ import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
-
-
-// import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
 
 const tableStyle = {
@@ -22,8 +19,6 @@ const tableStyle = {
 
 const ManageOrders = () => {
     const [allOrders, setAllOrders] = React.useState([]);
-
-    // const { user } = useAuth();
 
     React.useEffect(() => {
         fetch('https://lit-citadel-97865.herokuapp.com/orders')
@@ -76,7 +71,7 @@ const ManageOrders = () => {
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
                 <Paper sx={{ width: '100%', overflow: 'hidden', }}>
-                    <TableContainer sx={{ maxHeight: 700, backgroundColor: '#f5f6fa' }}>
+                    <TableContainer sx={{ maxHeight: 750, backgroundColor: '#f5f6fa' }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
                                 <TableRow>
@@ -93,7 +88,6 @@ const ManageOrders = () => {
                                         key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        {console.log(row)}
                                         <TableCell style={tableStyle} align="left"><img src={row?.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
                                         <TableCell className=" fs-6" style={tableStyle} component="th" scope="row">
                                             {row?.email}

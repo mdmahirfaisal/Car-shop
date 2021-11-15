@@ -3,21 +3,19 @@ import './HomeProduct.css';
 import Fade from 'react-reveal/Fade';
 import Swal from 'sweetalert2'
 
-
 import { Card } from 'react-bootstrap';
-import ProductsModal from '../../ProductsModal/ProductsModal';
 import useAuth from '../../../hooks/useAuth';
 import { useHistory } from 'react-router';
 
 
 const HomeProduct = ({ product }) => {
-    const { name, price, img, description, } = product;
-    const { user, pdModalClose, modalOpenPd, pdModalOpen } = useAuth();
+    const { name, price, img, description, _id } = product;
+    const { user } = useAuth();
     const history = useHistory();
 
-    const handlePdModal = () => {
+    const handlePlaceOrder = (id) => {
         if (user?.email) {
-            pdModalOpen();
+            history.push(`/placeOrder/${id}`)
         }
         else {
             Swal.fire({
@@ -45,7 +43,7 @@ const HomeProduct = ({ product }) => {
         <>
             <Fade bottom duration={3000} distance="50px">
                 <div className="mb-5 text-center service-detail col-sm-12 col-md-6 col-lg-4 ">
-                    <Card onClick={handlePdModal} style={{ cursor: 'pointer' }}
+                    <Card onClick={() => handlePlaceOrder(_id)} style={{ cursor: 'pointer' }}
                         className="border-0 h-100 card-background"
                     >
                         <Card.Img variant="top" src={img} className="img-fluid p-3 service-image" style={{ height: "" }} />
@@ -57,11 +55,6 @@ const HomeProduct = ({ product }) => {
                     </Card>
                 </div>
             </Fade>
-            <ProductsModal
-                modalOpenPd={modalOpenPd}
-                pdModalClose={pdModalClose}
-                product={product}
-            ></ProductsModal>
         </>
     );
 };

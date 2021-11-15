@@ -75,10 +75,10 @@ const MakeAdmin = () => {
     return (
         <div >
             <div className="container">
-                <div className="shadow py-4" style={{ borderRadius: '30px', height: '600px' }}>
+                <div className="shadow py-4" style={{ borderRadius: '30px', height: '600px', backgroundColor: '#f1f2f6' }}>
                     <h2 className="fw-bold text-primary">MAKE AN A ADMIN</h2>
                     <form onSubmit={handleMakeAdmin} className="mt-5">
-                        <TextField id="admin-input" type="email" onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '70%' }} />  <br />
+                        <TextField id="admin-input" type="email" required onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '70%' }} />  <br />
                         <Button sx={{ mt: 2, width: '70%' }} type="submit" variant="contained">Make Admin</Button>
                     </form>
                 </div>

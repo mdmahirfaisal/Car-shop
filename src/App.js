@@ -13,6 +13,7 @@ import AllProducts from './pages/AllProducts/AllProducts';
 import Register from './pages/Login/Register/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
+import PlaceOrder from './pages/Home/PlaceOrder/PlaceOrder';
 
 
 
@@ -27,19 +28,24 @@ function App() {
               <Home></Home>
             </Route>
 
-            <PrivateRoute path="/allProducts">
+            <Route path="/allProducts">
               <AllProducts></AllProducts>
-            </PrivateRoute>
+            </Route>
 
 
             <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
             </PrivateRoute>
 
+            <PrivateRoute path="/PlaceOrder/:orderId">
+              <PlaceOrder></PlaceOrder>
+            </PrivateRoute>
+
 
             <Route path="/login">
               <Login></Login>
             </Route>
+
 
             <Route path="/register">
               <Register></Register>
@@ -51,7 +57,6 @@ function App() {
             <Route exact path="*">
               <NotFound></NotFound>
             </Route>
-
 
           </Switch>
         </Router>

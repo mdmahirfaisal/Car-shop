@@ -15,16 +15,6 @@ const useFirebase = () => {
     const [admin, setAdmin] = useState(false);
 
 
-    const [modalOpenPd, setModalOpenPd] = useState(false);
-    const pdModalOpen = () => setModalOpenPd(true);
-    const pdModalClose = () => setModalOpenPd(false);
-
-
-    // const [loginModalOpen, setLoginModalOpen] = useState(false);
-    // const handleLoginOpen = () => setLoginModalOpen(true);
-    // const handleLoginClose = () => setLoginModalOpen(false);
-
-
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
@@ -121,7 +111,6 @@ const useFirebase = () => {
 
 
 
-
     /// save to database 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
@@ -149,12 +138,7 @@ const useFirebase = () => {
         loginUser,
         logOut,
         setLoading,
-        setAuthError,
-        setModalOpenPd,
-        modalOpenPd,
-        pdModalOpen,
-        pdModalClose,
-
+        setAuthError
     }
 };
 

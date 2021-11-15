@@ -35,7 +35,7 @@ import ManageProducts from '../ManageProducts/ManageProducts';
 
 
 
-const drawerWidth = 200;
+const drawerWidth = 220;
 
 function Dashboard(props) {
     const { logOut, admin } = useAuth();
@@ -99,11 +99,10 @@ function Dashboard(props) {
                     <Link to={`${url}/dashboard`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-user-circle fs-5 me-2 text-dark"></i> Profile</Button></Link><br />
 
 
+                    <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-list-ul fs-5 me-2 text-dark"></i> Booking List</Button></Link><br />
+
 
                     <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'black' }} className="mt-3"> <Button color="inherit"><i className="fab fa-amazon-pay fs-5 me-2 text-dark fw-bold"></i>   Pay now</Button></Link><br />
-
-
-                    <Link to={`${url}/bookings`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"><Button color="inherit"><i className="fas fa-list-ul fs-5 me-2 text-dark"></i> Booking List</Button></Link><br />
 
 
                     <Link to={`${url}/addReview`} style={{ textDecoration: 'none', color: 'black' }} className="mt-4"> <Button color="inherit"><i className="fas fa-comment-dots fs-5 me-2 text-dark fw-bold"></i> Review</Button></Link><br />
