@@ -12,8 +12,8 @@ const MakeAdmin = () => {
 
     const handleOnBlur = (e) => {
         setEmail(e.target.value);
-
     }
+
 
     const handleMakeAdmin = (e) => {
         const user = { email };
@@ -53,33 +53,32 @@ const MakeAdmin = () => {
                                 'New admin created successfully.',
                                 'success'
                             )
-                        } else if (
-                            result.dismiss === Swal.DismissReason.cancel
-                        ) {
-                            swalWithBootstrapButtons.fire(
-                                'Cancelled request',
-                                'Admin created failed. User is not exists)',
-                                'error'
-                            )
+                        }
+                        else if (!data.modifiedCount) {
+
                         }
                     })
-
             }
-
+            else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Admin created request canceled :)',
+                    'error'
+                )
+            }
         })
-
-
         e.preventDefault();
     }
-
-
     return (
         <div >
             <div className="container">
                 <div className="shadow py-4" style={{ borderRadius: '30px', height: '600px' }}>
                     <h2 className="fw-bold text-primary">MAKE AN A ADMIN</h2>
                     <form onSubmit={handleMakeAdmin} className="mt-5">
-                        <TextField type="email" onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '70%' }} />  <br />
+                        <TextField id="admin-input" type="email" onBlur={handleOnBlur} label="Email" variant="standard" sx={{ width: '70%' }} />  <br />
                         <Button sx={{ mt: 2, width: '70%' }} type="submit" variant="contained">Make Admin</Button>
                     </form>
                 </div>

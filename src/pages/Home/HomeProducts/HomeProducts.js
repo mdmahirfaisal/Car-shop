@@ -11,6 +11,7 @@ const HomeProducts = () => {
 
 
     useEffect(() => {
+        setLoading(true)
         fetch('https://lit-citadel-97865.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {

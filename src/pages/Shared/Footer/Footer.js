@@ -43,7 +43,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div>
-                            <h2 className="text-light mt-5">Use link</h2>
+                            <h2 className="text-light mt-5">All about</h2>
                             <div className="d-flex text-start">
                                 <div>
                                     <HashLink to="/home#banner" className="text-decoration-none"><p className="ms-5 text-secondary"> About us</p></HashLink>

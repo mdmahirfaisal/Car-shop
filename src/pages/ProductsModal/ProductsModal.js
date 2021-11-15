@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
 
@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2'
 import { Card, Container, Table } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
-
-
 
 const style = {
     position: 'absolute',
@@ -26,9 +24,22 @@ const style = {
 
 const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
     const { user } = useAuth();
+    const [productDetail, setProductDetail] = useState({});
+    const { _id } = product;
 
 
-    const { name, price, img, description } = product;
+
+    // load single form specific ID
+    useEffect(() => {
+        fetch(`https://lit-citadel-97865.herokuapp.com/products/${_id}`)
+            .then(res => res.json())
+            .then(data => setProductDetail(data))
+            .catch(error => {
+                console.log(error);
+            })
+    }, [_id]);
+
+    const { name, price, img, description } = productDetail;
     const addOrder = {
         name,
         price,
@@ -55,10 +66,13 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
                     footer: ''
                 })
                 pdModalClose();
-                console.log(data);
             })
             .catch(error => {
-                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `${error}`,
+                })
             })
     };
 
@@ -85,11 +99,11 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
                             <div className="row">
                                 <div className="col-sm-12 col-md-5">
                                     <Card className="h-100 shadow-sm">
-                                        <Card.Img variant="top" src={img} style={{ height: "" }} />
+                                        <Card.Img variant="top" src={productDetail?.img} style={{ height: "" }} />
                                         <Card.Body className="px-3">
-                                            <Card.Title className="fw-bold  text-danger fs-4">{name}</Card.Title>
+                                            <Card.Title className="fw-bold  text-danger fs-4">{productDetail?.name}</Card.Title>
                                             <Card.Text>
-                                                {description}
+                                                {productDetail?.description}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>
@@ -100,15 +114,17 @@ const ProductsModal = ({ modalOpenPd, pdModalClose, product }) => {
                                         <Table hover responsive>
                                             <thead>
                                                 <tr>
+                                                    <th>Name</th>
                                                     <th>Email</th>
-                                                    <th>Quantity</th>
+
                                                     <th>Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td>{user.displayName}</td>
                                                     <td>{user.email}</td>
-                                                    <td>1</td>
+
                                                     <td>$ {price}</td>
                                                 </tr>
                                             </tbody>

@@ -45,7 +45,7 @@ const AddReview = () => {
                     <input className="mb-2 py-2 form-control" defaultValue={user.email} {...register("email", { required: true })} placeholder="Name" />
 
                     <Form.Label>Ratings</Form.Label>
-                    <input className="mb-2 py-2 form-control " type="number" {...register("rating", {})} placeholder="Rate us between 0 to 5" />
+                    <input className="mb-2 py-2 form-control " defaultValue={5} type="number" {...register("rating", {})} placeholder="Rate us between 0 to 5" />
 
                     <Form.Label>Image</Form.Label>
                     <input className="mb-2 py-2 form-control " defaultValue={user.photoURL} {...register("photoURL", { required: true })} placeholder="Image" />

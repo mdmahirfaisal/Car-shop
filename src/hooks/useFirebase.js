@@ -13,7 +13,6 @@ const useFirebase = () => {
     const [authError, setAuthError] = useState('');
     const [loading, setLoading] = useState(true);
     const [admin, setAdmin] = useState(false);
-    console.log(admin);
 
 
     const [modalOpenPd, setModalOpenPd] = useState(false);

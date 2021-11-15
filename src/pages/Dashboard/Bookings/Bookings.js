@@ -17,9 +17,10 @@ const tableStyle = {
 const Bookings = () => {
     const { user } = useAuth();
     const [bookings, setBookings] = React.useState([]);
+    console.log(bookings);
 
     React.useEffect(() => {
-        const url = `https://lit-citadel-97865.herokuapp.com/orders?email=${user.email}`;
+        const url = `https://lit-citadel-97865.herokuapp.com/ordersData?email=${user.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setBookings(data))

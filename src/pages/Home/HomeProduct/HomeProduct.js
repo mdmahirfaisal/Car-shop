@@ -11,7 +11,7 @@ import { useHistory } from 'react-router';
 
 
 const HomeProduct = ({ product }) => {
-    const { name, price, img, description } = product;
+    const { name, price, img, description, } = product;
     const { user, pdModalClose, modalOpenPd, pdModalOpen } = useAuth();
     const history = useHistory();
 
