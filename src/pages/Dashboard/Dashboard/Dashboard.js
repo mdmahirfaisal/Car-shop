@@ -27,11 +27,11 @@ import Bookings from '../Bookings/Bookings';
 import ManageOrders from '../ManageOrders/ManageOrders';
 import Pay from '../Pay/Pay';
 import Profile from '../Profile/Profile';
-import AddReview from './AddReview/AddReview';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2'
 import ManageProducts from '../ManageProducts/ManageProducts';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
+import AddReview from '../AddReview/AddReview';
 
 
 

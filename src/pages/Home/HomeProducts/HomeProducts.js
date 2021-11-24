@@ -35,7 +35,7 @@ const HomeProducts = () => {
 
 
     return (
-        <div id="products">
+        <div id="products" className="home-products-bg">
             <h1 className="fw-bold text-secondary py-5 bg-light">OUR PRODUCTS</h1>
             <div className="container">
                 {loading ? <Spinner style={{ height: "100px", width: "100px" }} className="text-center" animation="border " variant="primary fs-1" /> :

@@ -1,49 +1,150 @@
-.service-detail {
-    transition: all 0.4s;
-  }
-  
-  .service-detail .card {
-    border-radius: 20px;
-    transition: 0.4s ease-out;
-    z-index: 1;
-  }
-  
-  .service-detail .card:hover {
-    box-shadow: 0px 7px 10px rgba(4, 242, 218, 0.489);
-    transform: translateY(-20px);
-  }
-  
-  .service-detail .card:hover::before {
-    transform: scaleY(1);
-  }
-  
-  .service-detail .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
+
+  /* 
+  profile card style  start now
+
+  */
+.home-products-bg{
     height: 100%;
-    background: #e7fffb;
-    border-radius: 15px;
-    z-index: -1;
-    transition: transform 300ms ease-in-out;
-    transform: scaleY(0);
-    transform-origin: top bottom;
-  }
-  
-  .service-detail .card:hover .card-body > div {
-    display: block;
-    opacity: 1;
-  }
-  
-  .service-detail .card .card-body > div {
-    display: none;
+    background-color: #f1f2f6;
+   padding-bottom: 50px;
+}
+
+   .home-card .icon {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: #fbfcfe;
+
+}
+
+ .home-card .icon .fa {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 80px;
+
+    color: #fff;
+
+}
+
+ .home-card .slide {
+
+    width: 300px;
+
+    height: 200px;
+
+    transition: 0.5s;
+
+}
+
+ .home-card .slide.slide1 {
+
     position: relative;
-    z-index: 3;
-    opacity: 0;
-    bottom: 16px;
-    color: white;
-    transition: opacity 0.5s ease-in-out, display 0.5s ease-in-out;
-  }
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1;
+
+    transition: .7s;
+
+    transform: translateY(100px);
+
+}
+
+ .home-card:hover .slide.slide1{
+
+    transform: translateY(0px);
+
+}
+
+ .home-card .slide.slide2 {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    transition: .7s;
+
+    transform: translateY(-100px);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+}
+
+.home-card:hover .slide.slide2{
+
+    transform: translateY(0);
+
+}
+
+ .home-card .slide.slide2::after{
+
+    content: "";
+
+    position: absolute;
+
+    width: 30px;
+
+    height: 4px;
+
+    bottom: 15px;
+
+    left: 50%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #2c73df;
+
+}
+
+ .home-card .slide.slide2 .content p {
+
+    margin: 0;
+
+    padding: 0;
+
+    text-align: center;
+
+    color: #414141;
+
+}
+
+ .home-card .slide.slide2 .content h5 {
+
+    margin: 0 0 10px 0;
+
+    padding: 0;
+
+    text-align: center;
+
+    color: #414141;
+
+} 

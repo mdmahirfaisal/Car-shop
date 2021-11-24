@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, } from "firebase/auth";
 import initializeFirebase from "../pages/Login/Firebase/Firebase.init";
+import Swal from 'sweetalert2'
 
 
 
@@ -107,6 +108,14 @@ const useFirebase = () => {
         fetch(`https://lit-citadel-97865.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error} check your internet connection`,
+
+                })
+            })
     }, [user.email]);
 
 

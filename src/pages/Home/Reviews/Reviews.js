@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Reviews.css';
 import Swal from 'sweetalert2'
 import Fade from 'react-reveal/Fade';
 
@@ -14,22 +15,6 @@ import SwiperCore, {
     EffectCoverflow,
     Pagination,
 } from "swiper/core";
-
-
-
-
-/* 
-<div className="container">
-                <h2 className="py-3 fw-bold">CLIENT REVIEWS</h2>
-                <div className="row">
-                    {allReviews?.map(review => <ReviewList
-                        key={review._id}
-                        review={review}
-                    ></ReviewList>)}
-                </div>
-            </div>
-*/
-
 
 const Reviews = () => {
     const [allReviews, setAllReviews] = useState([]);
@@ -55,10 +40,10 @@ const Reviews = () => {
     }, []);
 
     return (
-        <div id="review" className="py-5 bg-light" style={{ minHeight: '500px' }}>
+        <div id="review" className="py-5 bg-light reviews-section" style={{ minHeight: '500px' }}>
             <div style={{ width: '98%', margin: '0 auto' }}>
                 <Fade bottom duration={3000} distance="50px">
-                    <h2 className="py-3 fw-bold">CLIENT REVIEWS</h2>
+                    <h2 className="pb-5 fw-bold">CLIENT REVIEWS</h2>
                 </Fade>
                 <Fade bottom duration={3000} distance="50px">
                     <Swiper
@@ -96,7 +81,8 @@ const Reviews = () => {
                     >
                         {allReviews.map((review) => {
                             return (
-                                <SwiperSlide key={review._id}>
+                                <SwiperSlide className="swiper-slide"
+                                    key={review._id}>
                                     <ReviewList review={review}></ReviewList>
                                 </SwiperSlide>
                             );

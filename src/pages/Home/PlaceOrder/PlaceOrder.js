@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './PlaceOrder.css';
 import { Card, Container } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
@@ -6,6 +7,7 @@ import Swal from 'sweetalert2'
 import { TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import NavMenu from '../../Shared/NavMenu/NavMenu';
+import Footer from '../../Shared/Footer/Footer';
 
 
 
@@ -69,7 +71,7 @@ const PlaceOrder = () => {
     return (
         <>
             <NavMenu></NavMenu>
-            <div style={{ marginTop: '120px' }}>
+            <div style={{ marginTop: '120px' }} className="place-order-container">
                 <Container>
                     <div style={{ backgroundColor: 'light-gray', borderRadius: '40px' }}>
                         <h2 className="text-primary fw-bold mb-5 text-center">CHECK OUT</h2>
@@ -102,8 +104,8 @@ const PlaceOrder = () => {
                         </div>
                     </div>
                 </Container>
-
             </div>
+            <Footer></Footer>
         </>
     );
 };

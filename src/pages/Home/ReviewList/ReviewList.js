@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 const ReviewList = ({ review }) => {
     const { name, email, message, rating } = review;
     return (
-        <Paper elevation={20} style={{ minHeight: '200px' }}>
+        <Paper elevation={20} style={{ minHeight: '280px' }}>
 
             <Card
                 className="border-0 h-100"

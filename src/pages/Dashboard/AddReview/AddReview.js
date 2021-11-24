@@ -2,8 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2'
-import useAuth from '../../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import useAuth from '../../../hooks/useAuth';
+
 
 const AddReview = () => {
     const { register, handleSubmit, reset } = useForm();

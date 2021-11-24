@@ -22,13 +22,13 @@ const AllProducts = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `${error}`,
+                    text: `${error} check your internet connection`,
 
                 })
             })
             .finally(() => setLoading(false));
 
-    }, []);
+    }, [setLoading]);
 
     return (
         <>
@@ -38,14 +38,14 @@ const AllProducts = () => {
                 <div className="container">
                     <h1 className="fw-bold text-info my-4">TOTAL AVAILABLE PRODUCTS</h1>
 
-                    <div className="row ">
+                    {<div className="row ">
                         {
                             showProducts?.map(product => <AllProduct
                                 key={product?._id}
                                 product={product}
                             ></AllProduct>)
                         }
-                    </div>
+                    </div>}
 
                 </div>
             </div>

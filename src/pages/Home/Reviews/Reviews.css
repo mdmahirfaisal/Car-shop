@@ -1,0 +1,12 @@
+.reviews-section{
+    height: 100vh;
+}
+
+.swiper-slide{
+    padding-bottom: 150px;
+}
+@media screen and (max-width: 680px) {
+    .swiper-slide{
+        padding-bottom:0px;
+    }
+  }
