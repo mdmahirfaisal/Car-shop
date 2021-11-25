@@ -3,6 +3,7 @@ import React from 'react';
 import InputUnstyled from '@mui/core/InputUnstyled';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Swal from 'sweetalert2'
+import useAuth from '../../../hooks/useAuth';
 
 
 
@@ -35,6 +36,7 @@ const StyledInputElement = styled('input')`
 `;
 
 const Pay = () => {
+    const { user } = useAuth()
 
     const handleContact = (e) => {
         Swal.fire({
@@ -67,7 +69,7 @@ const Pay = () => {
                     <TextField required
                         style={{ width: '45%' }}
                         className=" bg-light rounded me-2"
-                        label="First name"
+                        label="Product"
                         type="text"
                         autoComplete="current-password"
                     />
@@ -75,8 +77,8 @@ const Pay = () => {
                     <TextField required
                         style={{ width: '45%' }}
                         className=" bg-light ms-2 rounded"
-                        label="Last name"
-                        type="text"
+                        label="Card Number"
+                        type="number"
                         autoComplete="current-password"
                     /> <br /> <br />
 
@@ -93,7 +95,7 @@ const Pay = () => {
                         className=" bg-light ms-2 rounded"
                         label="City"
                         type="text"
-                        autoComplete="current-password"
+
                     /> <br /> <br />
 
                     <TextField required
@@ -101,14 +103,14 @@ const Pay = () => {
                         className=" bg-light rounded me-2"
                         label="Email"
                         type="email"
-                        autoComplete="current-password"
+                        defaultValue={user.email}
                     />
                     <TextField
                         style={{ width: '45%' }}
                         className=" bg-light ms-2 rounded"
-                        label="Address"
+                        label="Name"
+                        defaultValue={user.displayName}
                         type="text"
-                        autoComplete="current-password"
                     /> <br /><br />
 
                     <InputUnstyled components={{ Input: StyledInputElement }} /> <br />
@@ -121,7 +123,7 @@ const Pay = () => {
                     /> <br />
                     <br />
 
-                    <button type="submit" className="btn btn-light w-50 py-2 ">SUBMIT</button>
+                    <button type="submit" className="btn btn-outline-danger w-75 rounded-pill  py-2 ">Payment</button>
 
                 </form>
             </div>

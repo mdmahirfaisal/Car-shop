@@ -4,7 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2'
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, CircularProgress } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import NavMenu from '../../Shared/NavMenu/NavMenu';
 import Footer from '../../Shared/Footer/Footer';
@@ -16,6 +16,7 @@ const PlaceOrder = () => {
     const [product, setProduct] = useState({});
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
+    const [productUpload, setProductUpload] = useState(false);
 
     // load single form specific ID
     useEffect(() => {
@@ -43,6 +44,7 @@ const PlaceOrder = () => {
         const userData = { status: 'pending', name: user.displayName, email: user.email, phone: data.phone, address: data.address };
 
         const newOrder = { ...userData, ...addOrder, orderTime: new Date() };
+        setProductUpload(true)
         fetch('https://lit-citadel-97865.herokuapp.com/orders', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -50,6 +52,7 @@ const PlaceOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setProductUpload(false)
                 reset();
                 Swal.fire({
                     icon: 'success',
@@ -73,6 +76,7 @@ const PlaceOrder = () => {
             <NavMenu></NavMenu>
             <div style={{ marginTop: '120px' }} className="place-order-container">
                 <h1 className="text-secondary bg-light py-5 fw-bold mb-5 text-center">CHECK OUT</h1>
+                {productUpload && <CircularProgress></CircularProgress>}
                 <Container>
                     <div>
                         <div className="row">
