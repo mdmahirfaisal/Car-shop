@@ -15,7 +15,6 @@ const tableStyle = {
     borderRight: '1px solid gray'
 }
 
-
 const ManageProducts = () => {
 
     const [manageProductsAdmin, setManageProductsAdmin] = React.useState([]);
@@ -92,10 +91,6 @@ const ManageProducts = () => {
         history.push(`/dashboard/updateProduct/${id}`)
     }
 
-
-
-
-
     return (
         <div>
             <div className="container">
@@ -120,8 +115,8 @@ const ManageProducts = () => {
 
                                     >
                                         <TableCell style={tableStyle} align="left"><img src={row?.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
-                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.name} <br />{console.log(row.name)}</TableCell>
-                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.description.slice(0, 20)} <br />{console.log(row.name)}</TableCell>
+                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.name} <br /></TableCell>
+                                        <TableCell className=" fs-6" style={tableStyle} align="left">{row?.description.slice(0, 20)} <br /></TableCell>
                                         <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row?.price}</TableCell>
                                         <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
                                             <button className="btn btn-outline-info py-1 mb-2 me-2 " onClick={() => handleUpdateProduct(row?._id)}><i className="fas fa-edit me-1"></i> Update</button>

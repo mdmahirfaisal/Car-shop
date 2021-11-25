@@ -12,7 +12,7 @@ initializeFirebase();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [authError, setAuthError] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [admin, setAdmin] = useState(false);
 
 
@@ -105,14 +105,18 @@ const useFirebase = () => {
     }, [auth]);
 
     useEffect(() => {
+        setLoading(true)
         fetch(`https://lit-citadel-97865.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin))
+            .then(data => {
+                setLoading(false)
+                setAdmin(data.admin)
+            })
             .catch(error => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `${error} check your internet connection`,
+                    text: `${error} `,
 
                 })
             })
@@ -124,6 +128,7 @@ const useFirebase = () => {
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         console.log(user);
+        setLoading(true)
         fetch('https://lit-citadel-97865.herokuapp.com/users', {
             method: method,
             headers: {
@@ -131,7 +136,9 @@ const useFirebase = () => {
             },
             body: JSON.stringify(user)
         })
-            .then()
+            .then(res => {
+                setLoading(false)
+            })
             .catch(error => {
                 console.log(error);
             })

@@ -43,9 +43,9 @@
 
  .home-card .slide {
 
-    width: 300px;
+    width: 100%;
 
-    height: 200px;
+    height: 250px;
 
     transition: 0.5s;
 

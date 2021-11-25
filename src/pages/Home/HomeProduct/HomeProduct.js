@@ -41,54 +41,25 @@ const HomeProduct = ({ product }) => {
 
     return (
         <>
-            {/* <Fade bottom duration={3000} distance="50px">
-                <div className="mb-5 text-center service-detail col-sm-12 col-md-6 col-lg-4 ">
-                    <Card onClick={() => handlePlaceOrder(_id)} style={{ cursor: 'pointer' }}
-                        className="border-0 h-100 card-background"
-                    >
-                        <Card.Img variant="top" src={img} className="img-fluid p-3 service-image" style={{ height: "" }} />
-                        <Card.Body className="pt-0">
-                            <Card.Title as="h5" className="">{name}</Card.Title>
-                            <Card.Title as="h4" className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
-                            <p>{description}</p>
-                        </Card.Body>
-                    </Card>
-                </div>
-            </Fade> */}
-
-
             <Fade bottom duration={3000} distance="50px">
                 <div className=" col-sm-12 col-md-6 col-lg-4 ">
                     <div className="home-card" style={{ cursor: 'pointer', borderRadius: '10px' }}>
-
                         <div className="slide slide1" onClick={() => handlePlaceOrder(_id)} style={{ cursor: 'pointer', borderRadius: '10px' }}>
-
                             <div className="content" style={{ cursor: 'pointer', borderRadius: '10px' }}>
-
                                 <div className="icon" >
-
                                     <Card.Img variant="top" src={img} className="p-2" />
-
                                 </div>
-
                             </div>
-
                         </div>
-
                         <div className="slide slide2" onClick={() => handlePlaceOrder(_id)} style={{ cursor: 'pointer', borderRadius: '10px' }}>
-
                             <div className="content">
-
                                 <Card.Body className="pt-0">
                                     <Card.Title as="h5" className="fw-bold text-primary">{name}</Card.Title>
                                     <Card.Title className=" text-danger"><i className="fas fa-dollar-sign"></i> {price}</Card.Title>
                                     <p>{description.slice(0, 80)}</p>
                                 </Card.Body>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </Fade>

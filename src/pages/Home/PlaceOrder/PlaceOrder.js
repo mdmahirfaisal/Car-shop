@@ -72,12 +72,12 @@ const PlaceOrder = () => {
         <>
             <NavMenu></NavMenu>
             <div style={{ marginTop: '120px' }} className="place-order-container">
+                <h1 className="text-secondary bg-light py-5 fw-bold mb-5 text-center">CHECK OUT</h1>
                 <Container>
-                    <div style={{ backgroundColor: 'light-gray', borderRadius: '40px' }}>
-                        <h2 className="text-primary fw-bold mb-5 text-center">CHECK OUT</h2>
+                    <div>
                         <div className="row">
                             <div className="col-sm-12 col-md-5">
-                                <Card className="h-100 shadow-sm">
+                                <Card className="h-100 shadow border-0" style={{ borderRadius: "15px" }} >
                                     <Card.Img variant="top" src={img} style={{ minHeight: "200px", padding: '10px 20px' }} />
                                     <Card.Body className="px-3">
                                         <Card.Title className="fw-bold  text-danger fs-4">{name}</Card.Title>
@@ -90,13 +90,13 @@ const PlaceOrder = () => {
 
                             </div>
                             <div className="col-sm-12 col-md-7">
-                                <div className="shadow px-4 pt-2 my-3" style={{ borderRadius: "15px" }}>
+                                <div className="shadow px-4 py-5 mt-sm-4" style={{ borderRadius: "15px" }}>
                                     <form onSubmit={handleSubmit(handlePlaceOrder)} className="d-flex flex-column w-100 h-100  p-3 ">
-                                        <TextField placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" defaultValue={user?.displayName || ''} /> <br /> <br />
-                                        <TextField placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" defaultValue={user?.email || ''} /> <br /> <br />
-                                        <TextField placeholder="Phone" fullWidth  {...register("phone")} /> <br /> <br />
+                                        <TextField variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" defaultValue={user?.displayName || ''} /> <br /> <br />
+                                        <TextField variant="standard" placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" defaultValue={user?.email || ''} /> <br /> <br />
+                                        <TextField variant="standard" label="Phone" fullWidth  {...register("phone")} /> <br /> <br />
 
-                                        <TextField placeholder="Address" fullWidth {...register("address", { required: true })} label="Address" defaultValue={""} /> <br /> <br />
+                                        <TextField variant="standard" fullWidth {...register("address", { required: true })} label="Address" defaultValue={""} /> <br /> <br />
                                         <Button type="submit" variant="contained" className=" w-100  rounded-pill"> Place order</Button>
                                     </form>
                                 </div>

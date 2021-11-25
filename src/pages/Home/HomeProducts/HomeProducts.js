@@ -29,7 +29,7 @@ const HomeProducts = () => {
             })
             .finally(() => setLoading(false))
 
-    }, []);
+    }, [setLoading]);
 
     const limitedProducts = products.slice(0, 6);
 
