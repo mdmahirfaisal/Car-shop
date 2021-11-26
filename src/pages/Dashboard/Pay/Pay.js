@@ -89,7 +89,6 @@ const Pay = () => {
                         type="text"
                         autoComplete="current-password"
                     />
-
                     <TextField
                         style={{ width: '45%' }}
                         className=" bg-light ms-2 rounded"
@@ -104,13 +103,16 @@ const Pay = () => {
                         label="Email"
                         type="email"
                         defaultValue={user.email}
+                        variant="filled"
                     />
+
                     <TextField
                         style={{ width: '45%' }}
                         className=" bg-light ms-2 rounded"
                         label="Name"
                         defaultValue={user.displayName}
                         type="text"
+                        variant="filled"
                     /> <br /><br />
 
                     <InputUnstyled components={{ Input: StyledInputElement }} /> <br />

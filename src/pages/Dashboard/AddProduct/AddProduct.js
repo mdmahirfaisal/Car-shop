@@ -76,18 +76,6 @@ const AddProduct = () => {
     return (
         <div className="container py-3 ">
             <h2 className="fw-bold text-secondary mt-1 mb-5">PLEASE ADD A PRODUCT</h2>
-
-            {/* <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column w-100  p-3 form-control">
-                <Form.Label>Car name</Form.Label>
-                <input className="mb-2 form-control " {...register("name", { required: true, maxLength: 40 })} placeholder="Name" />
-                <Form.Label>Car price</Form.Label>
-                <input className="mb-2 form-control " type="number" {...register("price", { required: true })} placeholder="Price" />
-                <Form.Label>Upload image</Form.Label>
-                <input className="mb-2 form-control " type="file" accept="image/*" onChange={handleImgUpload} required placeholder="Image URL" />
-                <Form.Label>Description</Form.Label>
-                <textarea className="mb-2 form-control " {...register("description", { required: true })} placeholder="Description" />
-                <input className="w-75 mx-auto rounded-pill btn btn-danger" type="submit" />
-            </form> */}
             {uploading && <CircularProgress></CircularProgress>}
 
             <div className="" style={{ maxWidth: '700px', margin: 'auto' }}>
