@@ -1,7 +1,6 @@
 import { TextField, Button } from '@mui/material';
 import axios from 'axios';
 import * as React from 'react';
-import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
@@ -55,7 +54,7 @@ const AddReview = () => {
             });
     };
 
-
+    // send data to database
     const onSubmit = reviewData => {
         const data = {
             name: reviewData.name,
