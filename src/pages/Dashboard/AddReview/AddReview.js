@@ -98,35 +98,42 @@ const AddReview = () => {
 
                     <TextField variant="standard" fullWidth {...register("address")} label="Address" /> <br />
 
-                    <div className="d-flex align-items-center">
-                        <Box
-                            className="w-50"
-                        >
-                            {rateValue !== null && (
-                                <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rateValue]}</Box>
-                            )}
-                            <Rating
-                                className="fs-1 mt-2"
-                                name="hover-feedback"
-                                value={rateValue}
-                                precision={0.5}
-                                onChange={(event, newValue) => {
-                                    setRateValue(newValue);
-                                }}
-                                onChangeActive={(event, newHover) => {
-                                    setHover(newHover);
-                                }}
-                                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                            />
+                    <div className="d-flex align-items-center mb-3">
+                        <div className="w-50">
+                            <h5 className="text-start ">Rate us</h5>
+                            <Box
+                                className=" d-flex align-items-center"
 
-                        </Box>
-                        <TextField className=" w-50"
-                            label="Upload Image"
-                            type="file" accept="image/*" onChange={handleImgUpload} required
-                            variant="standard" />
+                            >
+
+                                <Rating
+                                    className="fs-1 mt-2"
+                                    name="hover-feedback"
+                                    value={rateValue}
+                                    precision={0.5}
+                                    onChange={(event, newValue) => {
+                                        setRateValue(newValue);
+                                    }}
+                                    onChangeActive={(event, newHover) => {
+                                        setHover(newHover);
+                                    }}
+                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                />
+                                {rateValue !== null && (
+                                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rateValue]}</Box>
+                                )}
+                            </Box>
+                        </div>
+                        <div className="ms-auto  w-50">
+                            <h5 className="text-start ">Add your image</h5>
+                            <TextField className=""
+                                label="Upload Image"
+                                type="file" accept="image/*" onChange={handleImgUpload} required
+                                variant="standard" />
+                        </div>
                     </div>
-
-                    <textarea placeholder="Description" className="form-control"  {...register("description")} /> <br /> <br />
+                    <h6 className="text-start">Your feedback</h6>
+                    <textarea placeholder="Description" className="form-control" required  {...register("description")} /> <br />
 
                     <Button type="submit" variant="contained" className=" w-100  rounded-pill">Send review</Button>
                 </form>

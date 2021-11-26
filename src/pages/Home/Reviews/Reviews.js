@@ -37,7 +37,7 @@ const Reviews = () => {
 
             })
             .finally(() => setLoading(false))
-    }, []);
+    }, [setLoading]);
 
     return (
         <div id="review" className="py-5 bg-light reviews-section" style={{ minHeight: '500px' }}>
