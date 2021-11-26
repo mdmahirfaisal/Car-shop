@@ -40,7 +40,6 @@ const useFirebase = () => {
 
     // create new user with register
     const registerUser = (email, Password, name, history) => {
-        setLoading(true);
         createUserWithEmailAndPassword(auth, email, Password)
             .then(() => {
                 setAuthError('');
@@ -67,7 +66,6 @@ const useFirebase = () => {
 
     // all ready create user login
     const loginUser = (email, password, location, history) => {
-        setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((user) => {
                 const destination = location?.state?.from || '/';
@@ -82,7 +80,6 @@ const useFirebase = () => {
 
     // Log out user 
     const logOut = () => {
-        setLoading(true);
         signOut(auth).then(() => {
             setAuthError('');
         }).catch((error) => {
@@ -105,11 +102,9 @@ const useFirebase = () => {
     }, [auth]);
 
     useEffect(() => {
-        setLoading(true)
         fetch(`https://lit-citadel-97865.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                setLoading(false)
                 setAdmin(data.admin)
             })
             .catch(error => {
@@ -128,7 +123,7 @@ const useFirebase = () => {
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         console.log(user);
-        setLoading(true)
+        // setLoading(true)
         fetch('https://lit-citadel-97865.herokuapp.com/users', {
             method: method,
             headers: {
