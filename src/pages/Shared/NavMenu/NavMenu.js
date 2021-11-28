@@ -59,21 +59,21 @@ const NavMenu = () => {
                     <HashLink className="text-decoration-none" to="/">
                         <div className="d-md-flex align-items-center">
                             <img style={{ height: '35px' }} className="img-fluid" src={logo} alt="Logo" />
-                            <h5 className="text-danger fw-bold border-bottom mx-2" style={{ marginBottom: '-10px' }}>Super car shop</h5>
+                            <h5 className="text-danger fw-bold border-bottom mx-2" style={{ marginBottom: '-5px' }}>Super car shop</h5>
                         </div>
                     </HashLink>
                     <Navbar.Toggle onClick={() => setCollapsed(!isCollapsed ? 'show' : null)} aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className={isCollapsed}>
-                        <Nav className="me-auto" style={{ marginBottom: '-10px' }}>
+                        <Nav className="me-auto" style={{ marginBottom: '-5px' }}>
                             <Nav.Link as={HashLink} to="/" className="mr-md-5 btn" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
-                            <Nav.Link className="btn" as={HashLink} to="/home#about">About</Nav.Link>
-                            <Nav.Link className="btn" as={HashLink} to="/home#products">Products</Nav.Link>
-                            <Nav.Link className="btn" as={HashLink} to="/home#review">Review</Nav.Link>
-                            <Nav.Link className="btn" as={HashLink} to="/home#contact">Contact</Nav.Link>
+                            <Nav.Link className="btn text-dark" as={HashLink} to="/home#about">About</Nav.Link>
+                            <Nav.Link className="btn text-dark" as={HashLink} to="/home#products">Products</Nav.Link>
+                            <Nav.Link className="btn text-dark" as={HashLink} to="/home#review">Review</Nav.Link>
+                            <Nav.Link className="btn text-dark" as={HashLink} to="/home#contact">Contact</Nav.Link>
 
                         </Nav>
-                        <Nav className="d-md-flex align-items-center" style={{ marginBottom: '-10px' }}>
-                            {user?.email && <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>}
+                        <Nav className="d-md-flex align-items-center" style={{ marginBottom: '-5px' }}>
+                            {user?.email && <Nav.Link className="btn text-dark" as={Link} to="/dashboard">Dashboard</Nav.Link>}
                             {user?.email ? <Nav.Link onClick={handleLogout}> <button className="btn btn-outline-danger px-3 py-0 rounded-pill ">Logout</button></Nav.Link>
 
                                 : <Nav.Link as={Link} to="/login"><button className="btn btn-outline-info px-3 py-0 rounded-pill ">Login</button> </Nav.Link>}

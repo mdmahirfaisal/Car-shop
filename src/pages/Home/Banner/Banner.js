@@ -36,7 +36,7 @@ const Banner = () => {
 
     return (
         <div id="banner" className="banner-bg py-5" >
-            <div className="container ">
+            <div className="container" style={{ paddingTop: '50px' }}>
                 <div className="row d-flex align-items-center ">
                     <div className="col-sm-12 col-md-4 text-start">
                         <Fade left duration={2500} distance="50px">

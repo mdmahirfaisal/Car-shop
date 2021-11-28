@@ -6,7 +6,6 @@ import Paper from '@mui/material/Paper';
 
 const ReviewList = ({ review }) => {
     const { name, email, description, address, ratings, img } = review;
-    console.log(img, ratings);
     return (
         <Paper elevation={20} style={{ minHeight: '280px' }}>
 

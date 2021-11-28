@@ -68,15 +68,64 @@ const useFirebase = () => {
     const loginUser = (email, password, location, history) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((user) => {
-                const destination = location?.state?.from || '/';
-                history.replace(destination);
-                setAuthError('');
+
+                handleResponse(user.user, location, history)
             })
             .catch((error) => {
                 setAuthError(error.message);
             })
             .finally(() => setLoading(false));
     };
+
+
+    // handle logged in user
+    const handleResponse = (user, location, history) => {
+
+        const destination = location?.state?.from || '/';
+        history.replace(destination);
+        setAuthError('');
+        if (user.email === 'admin@gmail.com') {
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-outline-primary ms-2 px-4 py-0',
+                    cancelButton: 'btn btn-outline-danger me-2 px-4 py-0'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Warning',
+                text: 'You have entered the admin panel for testing. Please do not abuse this facility!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'No',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                        'Admin login success',
+                        'Now you can check out all the features in the admin panel',
+                        'success'
+                    )
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    logOut()
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled Request',
+                        'Thank you. You can log in as a user if you want with another email.',
+                        'error'
+                    )
+                }
+            })
+
+        };
+    };
+
+
+
 
     // Log out user 
     const logOut = () => {
@@ -123,7 +172,6 @@ const useFirebase = () => {
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         console.log(user);
-        // setLoading(true)
         fetch('https://lit-citadel-97865.herokuapp.com/users', {
             method: method,
             headers: {
