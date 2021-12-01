@@ -22,13 +22,13 @@ const Banner = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 history.push("/allProducts");
-                Swal.fire({
-                    position: 'top-middle',
-                    icon: 'success',
-                    title: 'Available Products Opened',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                // Swal.fire({
+                //     position: 'top-middle',
+                //     icon: 'success',
+                //     title: 'Available Products Opened',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // })
             }
         })
 
